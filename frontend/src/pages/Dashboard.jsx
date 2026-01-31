@@ -1,0 +1,59 @@
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import api from '../api/axios'
+import '../style/dashboard.css'
+
+import PatientSearch from "../components/patients/PatientSearch";
+import PatientTable from "../components/patients/PatientTable";
+
+const Dashboard = () => {
+    const [patients, setPatients] = useState([]);
+
+    const [searchQuery, setSearchQuery] = useState("");
+
+    useEffect(() => {
+        fetchPatients();
+    }, []);
+
+    const fetchPatients = async () => {
+        try {
+
+            const res = await api.get('/patients');
+            setPatients(res.data);
+
+        } catch (error) {
+
+            console.error("error fetching patients:", error);
+
+        }
+    }
+
+    const filteredPatients = patients.filter((patient) => {
+        const query = searchQuery.toLowerCase(); //case insensitive
+
+        return (
+            patient.fullName.toLowerCase().includes(query) ||
+            patient.phone.includes(query)
+        )
+    })
+
+    return (
+        <div className="dashboard-container">
+            <h1>Dashboard</h1>
+            <div className="dashboard-actions">
+            <Link to='/newPatient' >
+                <button className="new-patient-btn" type="submit">New Patient</button>
+            </Link>
+                <PatientSearch
+                    searchQuery={searchQuery}
+                    setSearchQuery={setSearchQuery}
+                />
+                </div>
+                <div className="patient-table-wrapper">
+                <PatientTable patients={filteredPatients} />
+            </div>
+        </div>
+    )
+}
+
+export default Dashboard;

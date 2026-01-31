@@ -1,0 +1,15 @@
+# dependencies
+node_modules/
+
+# env
+.env
+
+# logs
+logs/
+*.log
+
+# coverage
+coverage/
+
+# optional
+dist/

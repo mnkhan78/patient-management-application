@@ -1,0 +1,141 @@
+.patient-details-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 16px;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+/* Title */
+.page-title {
+  font-size: 1.6rem;
+  margin-bottom: 16px;
+  color: #1e293b;
+}
+
+/* Loading */
+.loading-text {
+  padding: 20px;
+  color: #64748b;
+}
+
+/* Patient Card */
+.patient-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  margin-bottom: 24px;
+}
+
+/* Info grid */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px 20px;
+}
+
+.info-grid p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #475569;
+}
+
+.info-grid span {
+  display: block;
+  font-size: 0.75rem;
+  color: #64748b;
+  font-weight: 600;
+  margin-bottom: 2px;
+  text-transform: uppercase;
+}
+
+.full-width {
+  grid-column: span 2;
+}
+
+/* Appointment section */
+.appointment-section {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.appointment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.appointment-header h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #1e293b;
+}
+
+/* Appointment list */
+.appointment-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.appointment-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+}
+
+.appointment-card p {
+  margin: 4px 0;
+  font-size: 0.9rem;
+  color: #475569;
+}
+
+/* Buttons */
+.primary-btn {
+  background-color: #2563eb;
+  color: #ffffff;
+  border: none;
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.primary-btn:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+/* Empty state */
+.empty-text {
+  text-align: center;
+  color: #64748b;
+  padding: 12px;
+}
+
+/* 📱 Mobile */
+@media (max-width: 640px) {
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .full-width {
+    grid-column: span 1;
+  }
+
+  .appointment-header {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .primary-btn {
+    width: 100%;
+  }
+}

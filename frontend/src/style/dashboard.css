@@ -1,0 +1,214 @@
+/* Global container */
+.dashboard-container {
+  padding: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+/* Heading */
+.dashboard-container h1 {
+  font-size: 1.6rem;
+  margin-bottom: 16px;
+  color: #1f2937; /* slate-800 */
+}
+
+/* Top action bar */
+.dashboard-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+/* New Patient Button */
+.new-patient-btn {
+  background-color: #2563eb; /* blue-600 */
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.new-patient-btn:hover {
+  background-color: #1d4ed8; /* blue-700 */
+  transform: translateY(-1px);
+}
+
+/* Search input (assumes PatientSearch has input) */
+.patient-search-input {
+  flex: 1;
+  min-width: 220px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db; /* gray-300 */
+  font-size: 0.95rem;
+}
+
+.patient-search-input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+/* Table wrapper */
+.patient-table-wrapper {
+  background: #ffffff;
+  border-radius: 10px;
+  overflow-x: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Table */
+.patient-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.patient-table th,
+.patient-table td {
+  padding: 12px 14px;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+/* Header */
+.patient-table th {
+  background-color: #f3f4f6; /* gray-100 */
+  color: #374151; /* gray-700 */
+  font-weight: 600;
+}
+
+/* Rows */
+.patient-table tr {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.patient-table tr:hover {
+  background-color: #f9fafb;
+}
+
+/* Empty state */
+.no-patients {
+  text-align: center;
+  padding: 20px;
+  color: #6b7280;
+}
+
+
+/* Mobile responsive */
+
+@media (max-width: 640px) {
+  .dashboard-container h1 {
+    font-size: 1.3rem;
+  }
+
+  .dashboard-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .new-patient-btn {
+    width: 100%;
+  }
+
+  .patient-search-input {
+    width: 100%;
+  }
+}
+
+/* ------------------ */
+/* ---Patient table -----  */
+/* ------------------ */
+
+/* Wrapper for horizontal scroll on mobile */
+.patient-table-wrapper {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow-x: auto;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+/* Table */
+.patient-table {
+  width: 100%;
+  min-width: 650px;
+  border-collapse: collapse;
+}
+
+/* Header */
+.patient-table thead {
+  background-color: #f1f5f9; /* slate-100 */
+}
+
+.patient-table th {
+  padding: 14px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #334155;
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* Body cells */
+.patient-table td {
+  padding: 12px 14px;
+  font-size: 0.9rem;
+  color: #475569;
+  white-space: nowrap;
+}
+
+/* Row styling */
+.patient-table tbody tr {
+  border-bottom: 1px solid #e2e8f0;
+  transition: background-color 0.15s ease;
+}
+
+.patient-table tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+/* View button */
+.view-btn {
+  background-color: #10b981; /* emerald-500 */
+  color: #ffffff;
+  border: none;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.view-btn:hover {
+  background-color: #059669; /* emerald-600 */
+  transform: translateY(-1px);
+}
+
+/* Empty state */
+.no-patients {
+  padding: 20px;
+  text-align: center;
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+/* 📱 Mobile optimization */
+@media (max-width: 640px) {
+  .patient-table th,
+  .patient-table td {
+    padding: 10px;
+    font-size: 0.85rem;
+  }
+
+  .view-btn {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+}
+
