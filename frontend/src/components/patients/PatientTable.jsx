@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import '../../style/dashboard.css'
+import '../../style/dashboard.css';
+import api from "../../api/axios";
 
-const PatientTable = ({patients}) => {
+const PatientTable = ({patients, onDelete}) => {
     if (patients.length === 0) {
         return <p className="no-patients">No Patient Found</p>
     }
@@ -28,6 +29,10 @@ const PatientTable = ({patients}) => {
                             <button className="view-btn" type="button"> view details
                             </button>
                         </Link></th>
+                        <th>
+                            <button className="delete-btn" type="button" 
+                            onClick={() => onDelete(patient._id)}>Delete</button>
+                        </th>
                     </tr>
                 ))}
             </tbody>

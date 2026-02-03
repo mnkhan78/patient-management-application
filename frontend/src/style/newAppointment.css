@@ -5,7 +5,7 @@
   font-family: "Inter", system-ui, sans-serif;
 }
 
-.page-title {
+.appointment-container .page-title {
   font-size: 1.6rem;
   margin-bottom: 16px;
   color: #1e293b;
@@ -31,7 +31,7 @@
 }
 
 /* Grid */
-.form-grid {
+.appointment-container .form-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 14px;
@@ -69,7 +69,7 @@
 }
 
 /* Buttons */
-.primary-btn {
+.appointment-container .primary-btn {
   width: 100%;
   background-color: #2563eb;
   color: #fff;
@@ -81,7 +81,7 @@
   cursor: pointer;
 }
 
-.primary-btn:hover {
+.appointment-container.primary-btn:hover {
   background-color: #1d4ed8;
 }
 
@@ -101,7 +101,7 @@
 
 /* 📱 Mobile */
 @media (max-width: 640px) {
-  .form-grid {
+  .appointment-container .form-grid {
     grid-template-columns: 1fr;
   }
 
@@ -109,7 +109,7 @@
     grid-template-columns: 1fr;
   }
 
-  .page-title {
+  .appointment-container .page-title {
     font-size: 1.3rem;
   }
 }

@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard';
 import NewPatient from './pages/NewPatient';
 import PatientDetails from './pages/PatientDetails';
 import NewAppointment from './pages/NewAppointment';
+import AppointmentDetails from './pages/AppointmentDetails';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
                 path="/patients/:patientId/new-appointment"
                 element={<NewAppointment />}
               />
+              <Route path="/appointmentDetails/:id" element={<AppointmentDetails/>} />
 
             </Routes>
           </main>

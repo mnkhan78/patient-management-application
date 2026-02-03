@@ -31,6 +31,19 @@ router.get('/patient/:patientId', async (req, res) => {
     }
 });
 
+router.get('/:id', async (req, res) => {
+    try {
+        const { id } = req.params; 
+
+        const data = await Appointment.findById(id);
+
+        res.status(200).json(data);
+        console.log('Appointment for the patient fetched successfully');
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
 
 router.post('/', async (req, res) => {
     try {
@@ -46,5 +59,22 @@ router.post('/', async (req, res) => {
         console.log(error);
     }
 })
+
+router.delete('/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const deletedAppointment = await Appointment.findByIdAndDelete(id);
+
+        if (!deletedAppointment) {
+            return res.status(404).json({ error: 'Appointment not found' });
+        }
+
+        res.status(200).json({ message: 'Appointment deleted successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
 
 module.exports = router;

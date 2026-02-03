@@ -73,7 +73,7 @@ router.patch('/:id', async (req, res) => {
   }
 })
 
-router.delete('/patients/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
     const patId = req.params.id;
 

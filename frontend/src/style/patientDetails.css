@@ -6,7 +6,7 @@
 }
 
 /* Title */
-.page-title {
+.patient-details-container .page-title {
   font-size: 1.6rem;
   margin-bottom: 16px;
   color: #1e293b;
@@ -96,7 +96,7 @@
 }
 
 /* Buttons */
-.primary-btn {
+.patient-details-container .primary-btn {
   background-color: #2563eb;
   color: #ffffff;
   border: none;
@@ -107,7 +107,7 @@
   transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
-.primary-btn:hover {
+.patient-details-container .primary-btn:hover {
   background-color: #1d4ed8;
   transform: translateY(-1px);
 }
@@ -135,7 +135,7 @@
     align-items: stretch;
   }
 
-  .primary-btn {
+  .patient-details-container.primary-btn {
     width: 100%;
   }
 }

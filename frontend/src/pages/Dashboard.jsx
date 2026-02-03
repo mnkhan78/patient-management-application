@@ -26,7 +26,24 @@ const Dashboard = () => {
             console.error("error fetching patients:", error);
 
         }
-    }
+    };
+
+    const handleDeletePatient = async (patientId) => {
+        try {
+            await api.delete(`/patients/${patientId}`);
+
+            alert('Patient deleted successfully ❌');
+
+            // Update UI instantly (no reload needed)
+            setPatients(prev =>
+                prev.filter(patient => patient._id !== patientId)
+            );
+
+        } catch (error) {
+            console.error("Error deleting patient:", error);
+        }
+    };
+
 
     const filteredPatients = patients.filter((patient) => {
         const query = searchQuery.toLowerCase(); //case insensitive
@@ -41,16 +58,16 @@ const Dashboard = () => {
         <div className="dashboard-container">
             <h1>Dashboard</h1>
             <div className="dashboard-actions">
-            <Link to='/newPatient' >
-                <button className="new-patient-btn" type="submit">New Patient</button>
-            </Link>
+                <Link to='/newPatient' >
+                    <button className="new-patient-btn" type="submit">New Patient</button>
+                </Link>
                 <PatientSearch
                     searchQuery={searchQuery}
                     setSearchQuery={setSearchQuery}
                 />
-                </div>
-                <div className="patient-table-wrapper">
-                <PatientTable patients={filteredPatients} />
+            </div>
+            <div className="patient-table-wrapper">
+                <PatientTable patients={filteredPatients} onDelete={handleDeletePatient} />
             </div>
         </div>
     )

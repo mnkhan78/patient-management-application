@@ -5,7 +5,7 @@
   font-family: "Inter", system-ui, sans-serif;
 }
 
-.page-title {
+.new-patient-container .page-title {
   font-size: 1.6rem;
   margin-bottom: 16px;
   color: #1e293b;
@@ -85,7 +85,7 @@
     grid-column: span 1;
   }
 
-  .page-title {
+  .new-patient-container .page-title {
     font-size: 1.3rem;
   }
 }
