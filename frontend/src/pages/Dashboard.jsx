@@ -56,16 +56,23 @@ const Dashboard = () => {
 
     return (
         <div className="dashboard-container">
+            <h3>Welcome, Dr. E.S. Khan</h3>
             <h1>Dashboard</h1>
             <div className="dashboard-actions">
+
+                {/* new patient button: */}
                 <Link to='/newPatient' >
                     <button className="new-patient-btn" type="submit">New Patient</button>
                 </Link>
+
+                {/* searching for patients:  */}
                 <PatientSearch
                     searchQuery={searchQuery}
                     setSearchQuery={setSearchQuery}
                 />
             </div>
+
+            {/* showing patients table:  */}
             <div className="patient-table-wrapper">
                 <PatientTable patients={filteredPatients} onDelete={handleDeletePatient} />
             </div>

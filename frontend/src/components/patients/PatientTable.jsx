@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import '../../style/dashboard.css';
-import api from "../../api/axios";
 
 const PatientTable = ({patients, onDelete}) => {
     if (patients.length === 0) {

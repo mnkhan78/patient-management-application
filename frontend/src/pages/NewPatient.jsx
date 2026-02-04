@@ -128,7 +128,7 @@ const NewPatient = () => {
                         onChange={handleChange}
                     />
                 </div>
-                <button type="submit">Submit Details</button>
+                <button className="submit-btn" type="submit">Register Patient</button>
             </form>
         </div>
     )

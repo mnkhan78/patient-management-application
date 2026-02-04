@@ -99,6 +99,19 @@
   background: #bae6fd;
 }
 
+.remove-btn {
+  background: #fecaca;
+  color: #991b1b;
+  border: none;
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.remove-btn:hover {
+  background: #f87171;
+}
+
 /* 📱 Mobile */
 @media (max-width: 640px) {
   .appointment-container .form-grid {

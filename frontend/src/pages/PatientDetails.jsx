@@ -81,7 +81,7 @@ const PatientDetails = () => {
                             <li key={appointment._id} className="appointment-card">
                                 <p>Date: {appointment.appointmentDate} </p>
                                 <p>Reason: {appointment.reason}</p>
-                                <button onClick={() => navigate(`/appointmentDetails/${appointment._id}`)}>View Details</button>
+                                <button className="view-btn" onClick={() => navigate(`/appointmentDetails/${appointment._id}`)}>View Details</button>
                             </li>
                         ))}
 

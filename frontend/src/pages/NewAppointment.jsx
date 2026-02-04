@@ -96,9 +96,15 @@ const NewAppointment = () => {
     });
   };
 
+  // Remove last medicine row
+  const removeMedicine = () => {
+    const updatedMedicines = formData.medicinesPrescribed.slice(0, -1);
 
-
-
+    setFormData({
+      ...formData,
+      medicinesPrescribed: updatedMedicines,
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -242,6 +248,7 @@ const NewAppointment = () => {
           <button type="button" className="secondary-btn" onClick={addMedicine}>
             + Add Medicine
           </button>
+          <button className="remove-btn" onClick={removeMedicine}>Remove Medicine</button>
         </div>
         <div className="section">
           <h3>Notes</h3>
