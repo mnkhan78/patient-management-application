@@ -19,6 +19,7 @@ const userSchema = new mongoose.Schema(
 
         username: {
             type: String,
+            required: true,
             unique: true,
             sparse: true,
             trim: true
@@ -31,6 +32,7 @@ const userSchema = new mongoose.Schema(
 
         role: {
             type: String,
+            required: true,
             enum: ["admin", "doctor", "receptionist"],
             default: "receptionist"
         },

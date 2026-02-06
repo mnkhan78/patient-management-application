@@ -8,7 +8,8 @@ const db = require('./db')
 
 const patientRoutes = require('./routes/patient.routes')
 const appointmentRoutes = require('./routes/appointment.routes')
-const userRoutes = require('./routes/user.routes')
+const userRoutes = require('./routes/user.routes');
+const { jwtAuthMiddleware } = require('./authetication/jwt.auth');
 
 const app = express();
 
@@ -17,11 +18,15 @@ app.use(passport.initialize());
 app.use(bodyParser.json());
 app.use(express.json());
 
-const localAuthMiddleware = passport.authenticate('local', { session: false });
-
 const PORT = process.env.PORT || 3000;
 
-app.get("/", localAuthMiddleware, (req, res) => {
+const localAuthMiddleware = passport.authenticate('local', { session: false });
+
+// app.get("/", localAuthMiddleware, (req, res) => {
+//   res.send("Backend is running 🚀");
+// });
+
+app.get("/", jwtAuthMiddleware, (req, res) => {
   res.send("Backend is running 🚀");
 });
 
