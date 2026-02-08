@@ -6,6 +6,8 @@ import NewPatient from './pages/NewPatient';
 import PatientDetails from './pages/PatientDetails';
 import NewAppointment from './pages/NewAppointment';
 import AppointmentDetails from './pages/AppointmentDetails';
+import Signup from './pages/Signup';
+import Login from './pages/Login';
 
 function App() {
 
@@ -25,6 +27,8 @@ function App() {
                 element={<NewAppointment />}
               />
               <Route path="/appointmentDetails/:id" element={<AppointmentDetails/>} />
+              <Route path='/signup' element={<Signup />} />
+              <Route path='/login' element={<Login />} />
 
             </Routes>
           </main>

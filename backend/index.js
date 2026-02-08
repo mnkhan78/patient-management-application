@@ -5,18 +5,24 @@ const cors = require('cors')
 const passport = require('./authetication/auth');
 const bodyParser = require('body-parser');
 const db = require('./db')
+const cookieParser = require('cookie-parser');
 
 const patientRoutes = require('./routes/patient.routes')
 const appointmentRoutes = require('./routes/appointment.routes')
 const userRoutes = require('./routes/user.routes');
-const { jwtAuthMiddleware } = require('./authetication/jwt.auth');
+const { jwtAuthMiddleware, authorizeRoles } = require('./authetication/jwt.auth');
 
 const app = express();
 
-app.use(cors())
+// app.use(cors())
+app.use(cors({
+  origin: "http://localhost:5173", // frontend URL
+  credentials: true,               // 🔥 allow cookies
+}));
 app.use(passport.initialize());
 app.use(bodyParser.json());
 app.use(express.json());
+app.use(cookieParser());
 
 const PORT = process.env.PORT || 3000;
 
@@ -26,7 +32,7 @@ const localAuthMiddleware = passport.authenticate('local', { session: false });
 //   res.send("Backend is running 🚀");
 // });
 
-app.get("/", jwtAuthMiddleware, (req, res) => {
+app.get("/", jwtAuthMiddleware, authorizeRoles('doctor'), (req, res) => {
   res.send("Backend is running 🚀");
 });
 

@@ -2,11 +2,12 @@
 const jwt = require('jsonwebtoken');
 
 const jwtAuthMiddleware = (req, res, next) => {
-    const authHeader = req.headers.authorization;
-    if (!authHeader) {
-        return res.status(401).json({ message: 'Authorization header missing' });
-    }
-    const token = req.headers.authorization.split(' ')[1];
+    // const authHeader = req.headers.authorization;
+    // if (!authHeader) {
+    //     return res.status(401).json({ message: 'Authorization header missing' });
+    // }
+    // const token = req.headers.authorization.split(' ')[1];
+    const token = req.cookies.token || req.headers.authorization?.split(' ')[1];
     if (!token) {
         return res.status(401).json({ message: 'Token missing' });
     }
@@ -31,4 +32,14 @@ const generateToken = (userData) => {
     return jwt.sign(userData, process.env.JWT_SECRET);
 }
 
-module.exports = {jwtAuthMiddleware, generateToken};
+const authorizeRoles = (...roles) => {
+    return (req, res, next) => {
+        if (!roles.includes(req.user.role)) {
+            return res.status(403).json({ message: 'Access denied' });
+        }
+        next();
+    };
+};
+
+
+module.exports = {jwtAuthMiddleware, generateToken, authorizeRoles};
