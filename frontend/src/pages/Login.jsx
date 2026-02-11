@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
 import api from '../api/axios';
+import '../style/auth.css';
 
 const Login = () => {
     const navigate  = useNavigate();
@@ -28,15 +29,16 @@ const Login = () => {
         }
     }
     return (
-        <div>
-                <h1>Login Page</h1>
-                <form className='login-form' onSubmit={handleSubmit}>
+        <div className='auth-container'>
+                <h1 className='auth-title'>Login</h1>
+                <form className='auth-form' onSubmit={handleSubmit}>
                     <input
                         type="text"
                         name="username"
                         placeholder="Username"
                         value={formData.username}
                         onChange={handleChange}
+                        required
                     />
                     <input
                         type="password"
@@ -44,6 +46,7 @@ const Login = () => {
                         placeholder="Password"
                         value={formData.password}
                         onChange={handleChange}
+                        required
                     />
                     <button type="submit">Login</button>
                 </form>

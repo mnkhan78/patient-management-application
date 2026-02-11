@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import api from '../api/axios';
-
+import '../style/auth.css';
 
 
 const Signup = () => {
@@ -30,14 +30,14 @@ const Signup = () => {
         }
     }
     return (
-        <div>
-            <h1>Signup Page</h1>
-            <form method="post" className='signup-form' onSubmit={handleSubmit}>
-                <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} />
-                <input type="text" name="username" placeholder='Username' value={formData.username} onChange={handleChange} />
-                <input type="email" name="email" placeholder='Email' value={formData.email} onChange={handleChange} />
-                <input type="password" name="password" placeholder='Password' value={formData.password} onChange={handleChange} />
-                <select name="role" id="role" value={formData.role} onChange={handleChange}>
+        <div className='auth-container'>
+            <h1 className='auth-title'>Create Account</h1>
+            <form method="post" className='auth-form' onSubmit={handleSubmit}>
+                <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} required />
+                <input type="text" name="username" placeholder='Username' value={formData.username} onChange={handleChange} required />
+                <input type="email" name="email" placeholder='Email' value={formData.email} onChange={handleChange} required />
+                <input type="password" name="password" placeholder='Password' value={formData.password} onChange={handleChange} required />
+                <select name="role" id="role" value={formData.role} onChange={handleChange} required>
                     <option value="">Select Role</option>
                     <option value="receptionist">Receptionist</option>
                     <option value="doctor">Doctor</option>
