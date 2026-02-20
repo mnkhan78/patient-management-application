@@ -4,7 +4,10 @@ import { useNavigate } from 'react-router';
 import api from '../api/axios';
 import '../style/auth.css';
 
+import { useAuth } from '../context/AuthConetxt';
+
 const Login = () => {
+    const { setIsAuthenticated } = useAuth();
     const navigate  = useNavigate();
     const [formData, setFormData] = useState ({
         username: "",
@@ -22,6 +25,7 @@ const Login = () => {
 
         try {
             await api.post('/users/login', formData);
+            setIsAuthenticated(true);
             alert("Login successful! 🎉");
             navigate("/dashboard");
         } catch (error) {

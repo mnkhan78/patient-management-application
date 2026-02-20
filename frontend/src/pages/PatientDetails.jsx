@@ -46,6 +46,7 @@ const PatientDetails = () => {
             <h1 className="page-title">Patient Details</h1>
             <div className="patient-card">
                 <div className="info-grid">
+                    <button onClick={() => navigate(`/patients/${patient._id}/appointments`)}>View Appointments</button>
                     <p><strong>Patient ID:</strong> {patient.patientId}</p>
                     <p><strong>Name:</strong> {patient.fullName}</p>
                     <p><strong>Age:</strong> {patient.age}</p>

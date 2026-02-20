@@ -5,4 +5,18 @@ const api = axios.create({
   withCredentials: true, // include cookies in requests
 });
 
+// Response interceptor
+api.interceptors.response.use(
+    (response) => response,
+    (error) => {
+        if (error.response) {
+            if (error.response.status === 403) {
+                window.location.href = "/forbidden";
+            }
+        }
+
+        return Promise.reject(error);
+    }
+);
+
 export default api;

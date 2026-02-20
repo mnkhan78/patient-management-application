@@ -1,9 +1,10 @@
 const express = require('express');
 const Patient = require('../models/patient.model');
+const { jwtAuthMiddleware } = require('../authetication/jwt.auth');
 
 const router = express.Router();
-
-router.get('/', async (req, res) => {
+ 
+router.get('/', jwtAuthMiddleware, async (req, res) => {
   try {
     const data = await Patient.find();
     console.log('data fetched successfully');

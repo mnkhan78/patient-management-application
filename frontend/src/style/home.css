@@ -1,0 +1,113 @@
+/* Full page container */
+.home-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: linear-gradient(to right, #0f172a, #1e293b);
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Center content */
+.home-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Title */
+.home-title {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+/* Subtitle */
+.home-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    opacity: 0.8;
+}
+
+/* Button container */
+.home-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+/* Buttons */
+.home-primary-btn,
+.home-secondary-btn {
+    padding: 12px 25px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+/* Primary button */
+.home-primary-btn {
+    background-color: #3b82f6;
+    color: white;
+}
+
+.home-primary-btn:hover {
+    background-color: #2563eb;
+    transform: translateY(-3px);
+}
+
+/* Secondary button */
+.home-secondary-btn {
+    background-color: #10b981;
+    color: white;
+}
+
+.home-secondary-btn:hover {
+    background-color: #059669;
+    transform: translateY(-3px);
+}
+
+/* CSS for AuthButton component */
+
+/* Common button styling */
+.auth-btn {
+    position: absolute;
+    top: 50px;
+    right: 60px;
+
+    padding: 8px 18px;
+    border-radius: 6px;
+    border: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Login Button */
+.login-btn {
+    background-color: #3b82f6;
+    color: white;
+}
+
+.login-btn:hover {
+    background-color: #2563eb;
+    transform: translateY(-2px);
+}
+
+/* Logout Button */
+.logout-btn {
+    background-color: #ef4444;
+    color: white;
+}
+
+.logout-btn:hover {
+    background-color: #dc2626;
+    transform: translateY(-2px);
+}

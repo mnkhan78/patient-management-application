@@ -5,7 +5,7 @@ const router = express.Router();
 const { generateToken, authorizeRoles, jwtAuthMiddleware } = require('../authetication/jwt.auth');
 
 // get all users
-router.get("/", async (req, res) => {
+router.get("/", jwtAuthMiddleware, async (req, res) => {
   try {
     const users = await User.find();
     res.status(200).json(users);
@@ -77,14 +77,6 @@ router.post("/login", async (req, res) => {
     })
     res.status(200).json({ user: user, token: token });
 
-    // res.status(200).json({
-    //   message: "Login successful",
-    //   user: {
-    //     id: user._id,
-    //     username: user.username,
-    //     role: user.role,
-    //   },
-    // });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal server error" });
