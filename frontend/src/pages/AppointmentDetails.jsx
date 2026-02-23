@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import api from '../api/axios';
 import { useEffect } from 'react';
+import '../style/appointmentDetails.css';
 
 const AppointmentDetails = () => {
     const { id } = useParams();
@@ -22,10 +23,10 @@ const AppointmentDetails = () => {
     }, [id]);
 
     return (
-        <div>
-            <h1>Appointment Details Page - {id}</h1>
+        <div className="appointment-details-container">
+            <h1 className="details-title">Appointment Details Page:</h1>
             {appointment && (
-                <div>
+                <div className="details-card">
                     <p><strong>Patient ID:</strong> {appointment.patientId}</p>
                     <p><strong>Date:</strong> {appointment.appointmentDate}</p>
                     <p><strong>Reason:</strong> {appointment.reason}</p>
@@ -36,7 +37,7 @@ const AppointmentDetails = () => {
                     <p><strong>Pulse:</strong> {appointment.vitals.pulse}</p>
                     <div>
                         <strong>Medicines Prescribed:</strong>
-                        <ul> 
+                        <ul className="details-medicine-list"> 
                             {appointment.medicinesPrescribed.map((medicine, index) => (
                                 <li key={index}>{medicine.name} - {medicine.dosage} - {medicine.frequency}</li>
                             ))}
@@ -45,7 +46,7 @@ const AppointmentDetails = () => {
                     <p><strong>Notes:</strong> {appointment.notes}</p>
                 </div>
             )}
-            <button onClick={() => navigate(-1)}>Go Back</button>
+            <button className="back-btn" onClick={() => navigate(-1)}>Go Back</button>
         </div>
     );
 }

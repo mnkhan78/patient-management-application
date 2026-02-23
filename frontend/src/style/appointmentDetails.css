@@ -1,0 +1,133 @@
+/* Page Container */
+.appointment-details-container {
+  min-height: 100vh;
+  padding: 30px 20px;
+  background: #f4f7fb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Title */
+.details-title {
+  margin-bottom: 25px;
+  font-size: 28px;
+  color: #2c3e50;
+  text-align: center;
+}
+
+/* Card */
+.details-card {
+  width: 100%;
+  max-width: 700px;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  border-top: 6px solid #4CAF50;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Paragraph Styling */
+.details-card p {
+  margin: 10px 0;
+  font-size: 15px;
+  color: #555;
+}
+
+.details-card strong {
+  color: #2c3e50;
+}
+
+/* Vitals Highlight Section */
+.details-card p:nth-child(4),
+.details-card p:nth-child(5),
+.details-card p:nth-child(6),
+.details-card p:nth-child(7) {
+  background: #f0f4ff;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+/* Medicine List */
+.details-medicine-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.details-medicine-list li {
+  background: #f9fafc;
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  font-size: 14px;
+  border-left: 4px solid #4CAF50;
+}
+
+/* Notes Styling */
+.details-card p:last-of-type {
+  margin-top: 15px;
+  padding: 10px;
+  background: #fff8e1;
+  border-radius: 8px;
+}
+
+/* Back Button */
+.back-btn {
+  margin-top: 25px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #4CAF50;
+  color: #ffffff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+  background: #43a047;
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .details-card {
+    padding: 20px;
+  }
+
+  .details-title {
+    font-size: 22px;
+  }
+
+  .details-card p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .appointment-details-container {
+    padding: 20px 10px;
+  }
+
+  .details-card {
+    padding: 15px;
+  }
+
+  .back-btn {
+    width: 100%;
+  }
+}
+
+/* Smooth Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

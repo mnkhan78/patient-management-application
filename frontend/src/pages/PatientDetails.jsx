@@ -3,11 +3,16 @@ import api from '../api/axios'
 import { useNavigate, useParams } from "react-router";
 import '../style/patientDetails.css'
 
+import UpdateAppointmentModal from "./UpdateAppointmnetModal";
+
 const PatientDetails = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const [patient, setPatient] = useState(null);
     const [appointments, setAppointments] = useState([]);
+
+    const [showUpdateModal, setShowUpdateModal] = useState(false);
+    const [selectedAppointment, setSelectedAppointment] = useState(null);
 
     useEffect(() => {
         fetchPatient();
@@ -19,7 +24,6 @@ const PatientDetails = () => {
 
             const res = await api.get(`/patients/${id}`);
             setPatient(res.data);
-            console.log(res.data);
 
         } catch (error) {
             console.error("error fetching patients:", error);
@@ -29,7 +33,6 @@ const PatientDetails = () => {
     const fetchAppointment = async () => {
         try {
             const res = await api.get(`/appointments/patient/${id}`);
-            console.log(res.data);
             setAppointments(res.data);
 
         } catch (error) {
@@ -46,7 +49,7 @@ const PatientDetails = () => {
             <h1 className="page-title">Patient Details</h1>
             <div className="patient-card">
                 <div className="info-grid">
-                    <button onClick={() => navigate(`/patients/${patient._id}/appointments`)}>View Appointments</button>
+                    <button className="primary-btn" onClick={() => navigate(`/patients/${patient._id}/appointments`)}>View All Appointments</button>
                     <p><strong>Patient ID:</strong> {patient.patientId}</p>
                     <p><strong>Name:</strong> {patient.fullName}</p>
                     <p><strong>Age:</strong> {patient.age}</p>
@@ -83,12 +86,35 @@ const PatientDetails = () => {
                                 <p>Date: {appointment.appointmentDate} </p>
                                 <p>Reason: {appointment.reason}</p>
                                 <button className="view-btn" onClick={() => navigate(`/appointmentDetails/${appointment._id}`)}>View Details</button>
+                                <button className="delete-btn" onClick={() => {
+                                    if (window.confirm("Are you sure you want to delete this appointment?")) {
+                                        api.delete(`/appointments/${appointment._id}`)
+                                            .then(() => {
+                                                fetchAppointment();
+                                            })
+                                            .catch(error => {
+                                                console.error("Error deleting appointment:", error);
+                                            });
+                                    }
+                                }}>Delete</button>
+                                <button className="update-btn" onClick={() => {
+                                    setSelectedAppointment(appointment);
+                                    setShowUpdateModal(true);
+                                }}>Update</button>
+
+
                             </li>
                         ))}
 
                     </ul>
                 )}
             </div>
+                {showUpdateModal && (
+                    <UpdateAppointmentModal
+                        appointment={selectedAppointment}
+                        onClose={() => setShowUpdateModal(false)}
+                    />
+                )}
         </div>
     )
 }

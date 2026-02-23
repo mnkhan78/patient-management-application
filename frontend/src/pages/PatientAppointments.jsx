@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import api from '../api/axios'
 import { useNavigate, useParams } from "react-router";
+import '../style/patientAppointments.css';
 
 
 const PatientAppointments = () => {
@@ -26,9 +27,9 @@ const PatientAppointments = () => {
             {appointments.length === 0 ? (
                 <p>No appointments found for this patient.</p>
             ) : (
-                <ul>
+                <ul className="appointments-grid">
                     {appointments.map((appointment) => (
-                        <li key={appointment._id}>
+                        <li key={appointment._id} className="appointment-card">
                             <p><strong>Date:</strong> {new Date(appointment.appointmentDate).toLocaleDateString()}</p>
                             <p><strong>Reason:</strong> {appointment.reason}</p>
                             <p><strong>Status:</strong> {appointment.status}</p>
@@ -38,7 +39,7 @@ const PatientAppointments = () => {
                     <p><strong>Pulse:</strong> {appointment.vitals.pulse}</p>
                     <div>
                         <strong>Medicines Prescribed:</strong>
-                        <ul> 
+                        <ul className="medicines-list"> 
                             {appointment.medicinesPrescribed.map((medicine, index) => (
                                 <li key={index}>{medicine.name} - {medicine.dosage} - {medicine.frequency}</li>
                             ))}

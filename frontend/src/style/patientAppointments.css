@@ -1,0 +1,91 @@
+.patient-appointments {
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.patient-appointments h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 26px;
+  color: #2c3e50;
+}
+
+/* Grid Layout */
+.appointments-grid {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+/* Card Design */
+.appointment-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-left: 6px solid #4CAF50;
+}
+
+.appointment-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+.appointment-card p {
+  margin: 6px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+.appointment-card strong {
+  color: #2c3e50;
+}
+
+/* Status Styling */
+.appointment-card p:nth-child(3) {
+  font-weight: bold;
+}
+
+/* Medicine Section */
+.medicine-list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 8px;
+}
+
+.medicine-list li {
+  background: #f4f6f9;
+  padding: 6px 10px;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  font-size: 13px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .patient-appointments {
+    padding: 15px;
+  }
+
+  .appointment-card {
+    padding: 15px;
+  }
+
+  .appointment-card p {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .appointments-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .patient-appointments h2 {
+    font-size: 20px;
+  }
+}
