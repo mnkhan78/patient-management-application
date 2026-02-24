@@ -1,10 +1,12 @@
 const express = require('express');
 const Patient = require('../models/patient.model');
-const { jwtAuthMiddleware } = require('../authetication/jwt.auth');
+const { jwtAuthMiddleware, authorizeRoles } = require('../authetication/jwt.auth');
 
 const router = express.Router();
+
+router.use(jwtAuthMiddleware);
  
-router.get('/', jwtAuthMiddleware, async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const data = await Patient.find();
     console.log('data fetched successfully');
@@ -74,7 +76,7 @@ router.patch('/:id', async (req, res) => {
   }
 })
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', authorizeRoles('admin', 'doctor'), async (req, res) => {
   try {
     const patId = req.params.id;
 

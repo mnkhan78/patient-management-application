@@ -1,7 +1,10 @@
 const express = require('express');
 const Appointment = require('../models/appointment.model');
+const { jwtAuthMiddleware } = require('../authetication/jwt.auth');
 
 const router = express.Router();
+
+router.use(jwtAuthMiddleware);
 
 router.get('/', async (req, res) => {
     try {
