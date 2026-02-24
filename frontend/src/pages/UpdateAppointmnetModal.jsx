@@ -87,7 +87,7 @@ const UpdateAppointmentModal = ({ appointment, onClose }) => {
       <div className="modal-container">
         <h2>Update Appointment</h2>
 
-        <form onSubmit={handleSubmit}>
+        <form className="appointment-form" onSubmit={handleSubmit}>
 
           {/* Medicines */}
           <h4>Medicines</h4>
@@ -118,7 +118,7 @@ const UpdateAppointmentModal = ({ appointment, onClose }) => {
             </div>
           ))}
 
-          <button type="button" onClick={addMedicine}>
+          <button type="button" className="secondary-btn" onClick={addMedicine}>
             + Add Medicine
           </button>
 

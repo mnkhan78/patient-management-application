@@ -223,7 +223,6 @@ const NewAppointment = () => {
                 placeholder="Medicine Name"
                 value={medicine.name}
                 onChange={(e) => handleMedicineChange(index, e)}
-                required
               />
 
               <input

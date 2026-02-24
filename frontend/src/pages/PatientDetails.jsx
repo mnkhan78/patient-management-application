@@ -85,6 +85,9 @@ const PatientDetails = () => {
                             <li key={appointment._id} className="appointment-card">
                                 <p>Date: {appointment.appointmentDate} </p>
                                 <p>Reason: {appointment.reason}</p>
+                                <div className="action-buttons">
+
+                                
                                 <button className="view-btn" onClick={() => navigate(`/appointmentDetails/${appointment._id}`)}>View Details</button>
                                 <button className="delete-btn" onClick={() => {
                                     if (window.confirm("Are you sure you want to delete this appointment?")) {
@@ -101,7 +104,7 @@ const PatientDetails = () => {
                                     setSelectedAppointment(appointment);
                                     setShowUpdateModal(true);
                                 }}>Update</button>
-
+</div>
 
                             </li>
                         ))}

@@ -139,3 +139,67 @@
     width: 100%;
   }
 }
+
+/* update and delete button styling */
+/* Button Container */
+.action-buttons {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Common Button Style */
+.update-btn,
+.delete-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 90px;
+}
+
+/* Update Button */
+.update-btn {
+  background-color: #2196f3;
+  color: white;
+}
+
+.update-btn:hover {
+  background-color: #1976d2;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(33, 150, 243, 0.3);
+}
+
+/* Delete Button */
+.delete-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #d32f2f;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(244, 67, 54, 0.3);
+}
+
+/* Active Click Effect */
+.update-btn:active,
+.delete-btn:active {
+  transform: scale(0.96);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .update-btn,
+  .delete-btn {
+    width: 100%;
+  }
+}
