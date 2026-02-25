@@ -178,6 +178,14 @@ const NewAppointment = () => {
 
             <input
               type="number"
+              name="height"
+              placeholder="Height (cm)"
+              value={formData.vitals.height}
+              onChange={handleVitalsChange}
+            />
+
+            <input
+              type="number"
               name="systolic"
               placeholder="BP Systolic"
               value={formData.vitals.bp.systolic}

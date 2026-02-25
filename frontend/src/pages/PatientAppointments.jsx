@@ -14,7 +14,6 @@ const PatientAppointments = () => {
     const fetchAppointments = async () => {
         try {
             const res = await api.get(`/appointments/patient/${id}`);
-            console.log(res.data);
             setAppointments(res.data);
         } catch (error) {
             console.error("error fetching appointments:", error);

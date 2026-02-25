@@ -29,7 +29,11 @@ function App() {
                 </ProtectedRoute>} 
               />
               
-              <Route path='/newPatient' element={<NewPatient />} />
+              <Route path='/newPatient' element={
+                <ProtectedRoute>
+                  <NewPatient />
+                </ProtectedRoute>} 
+              />
               <Route path='/patientDetails/:id' element={<PatientDetails />} />
               <Route
                 path="/patients/:patientId/new-appointment"

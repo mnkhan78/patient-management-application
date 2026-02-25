@@ -33,6 +33,9 @@ const appointmentSchema = new mongoose.Schema(
             weight: {
                 type: Number, // kg
             },
+            height: {
+                type: Number, // cm
+            },
             bp: {
                 systolic: Number,
                 diastolic: Number,
