@@ -13,7 +13,7 @@ const Home = () => {
                 <p className="home-subtitle">Manage your patients efficiently and securely</p>
                 <div className="home-buttons">
                     <Link to='/dashboard'>
-                        <button className="home-primary-btn">Go to Dashboard</button>
+                        <button className="home-primary-btn">Dashboard</button>
                     </Link>
 
                     <Link to='/signup'>

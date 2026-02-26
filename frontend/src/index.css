@@ -17,5 +17,19 @@
   :root {
     color: #213547;
     background-color: #ffffff;
+    color-scheme: light;
   }
+}
+html {
+  color-scheme: light;
+}
+
+body {
+  background-color: #f9fafb;
+  color: #111827;
+}
+
+input, textarea, select {
+  background-color: white;
+  color: black;
 }
