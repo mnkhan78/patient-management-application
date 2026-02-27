@@ -16,7 +16,7 @@ const app = express();
 
 // app.use(cors())
 app.use(cors({
-  origin: "http://localhost:5173", // frontend URL
+  origin: process.env.CLIENT_URL, // frontend URL
   credentials: true,               // 🔥 allow cookies
 }));
 app.use(passport.initialize());
