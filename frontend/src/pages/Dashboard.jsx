@@ -29,6 +29,9 @@ const Dashboard = () => {
     };
 
     const handleDeletePatient = async (patientId) => {
+        if (!window.confirm("Are you sure you want to delete this patient? This action cannot be undone.")) {
+            return;
+        }
         try {
             await api.delete(`/patients/${patientId}`);
 
@@ -74,7 +77,7 @@ const Dashboard = () => {
 
             {/* showing patients table:  */}
             <div className="patient-table-wrapper">
-                <PatientTable patients={filteredPatients} onDelete={handleDeletePatient} />
+                <PatientTable patients={filteredPatients} onDelete={handleDeletePatient} fetchPatients={fetchPatients} />
             </div>
         </div>
     )

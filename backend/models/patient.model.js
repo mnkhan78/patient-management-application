@@ -29,7 +29,6 @@ const patientSchema = new mongoose.Schema(
     phone: {
       type: String,
       required: true,
-      unique: true,
     },
 
     email: {
@@ -42,7 +41,7 @@ const patientSchema = new mongoose.Schema(
 
     bloodGroup: {
       type: String,
-      enum: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'],
+      enum: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-', ''],
     },
 
     medicalHistory: {

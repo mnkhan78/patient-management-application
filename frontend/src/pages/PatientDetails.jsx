@@ -90,7 +90,7 @@ const PatientDetails = () => {
                                 
                                 <button className="view-btn" onClick={() => navigate(`/appointmentDetails/${appointment._id}`)}>View Details</button>
                                 <button className="delete-btn" onClick={() => {
-                                    if (window.confirm("Are you sure you want to delete this appointment?")) {
+                                    if (window.confirm("Are you sure you want to delete this appointment? This action cannot be undone.")) {
                                         api.delete(`/appointments/${appointment._id}`)
                                             .then(() => {
                                                 fetchAppointment();
