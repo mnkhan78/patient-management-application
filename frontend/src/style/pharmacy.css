@@ -1,0 +1,108 @@
+/* Main Container */
+.pharmacy-container {
+  padding: 30px;
+  background: #f4f7fb;
+  min-height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Title */
+.pharmacy-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #1e293b;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+/* Grid Layout */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+/* Card */
+.prescription-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transition: all 0.25s ease;
+  border-left: 6px solid #3498db;
+}
+
+.prescription-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Patient Name */
+.prescription-card h3 {
+  margin-bottom: 12px;
+  font-size: 18px;
+  color: #111827;
+}
+
+/* Medicine List */
+.prescription-card ul {
+  padding-left: 18px;
+  margin-bottom: 18px;
+}
+
+.prescription-card li {
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: #374151;
+}
+
+/* Status Section */
+.status-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Status Badge */
+.status {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Pending */
+.pending {
+  background: #fff3cd;
+  color: #b45309;
+  border: 1px solid #facc15;
+}
+
+/* Dispensed */
+.dispensed {
+  background: #dcfce7;
+  color: #166534;
+  border: 1px solid #22c55e;
+}
+
+/* Button */
+.dispense-btn {
+  padding: 6px 14px;
+  background: #2563eb;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.dispense-btn:hover {
+  background: #1d4ed8;
+}
+
+/* Loading */
+.loading-text {
+  text-align: center;
+  font-size: 16px;
+  color: #475569;
+}

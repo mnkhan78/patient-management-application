@@ -65,6 +65,15 @@ const appointmentSchema = new mongoose.Schema(
                 },
             },
         ],
+        medicineStatus: {
+            type: String,
+            enum: ["Pending", "Dispensed"],
+            default: "Pending",
+        },
+
+        dispensedAt: {
+            type: Date,
+        },
 
         notes: {
             type: String,

@@ -1,5 +1,6 @@
 import './App.css'
 import { BrowserRouter as Router, Routes, Route } from "react-router";
+
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import NewPatient from './pages/NewPatient';
@@ -11,6 +12,7 @@ import Login from './pages/Login';
 import Forbidden from './pages/Forbidden';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import PatientAppointments from './pages/PatientAppointments';
+import Pharmacy from './pages/Pharmacy';
 
 function App() {
 
@@ -45,6 +47,7 @@ function App() {
               <Route path='/login' element={<Login />} />
               <Route path='/forbidden' element={<Forbidden />} />
               <Route path='/patients/:id/appointments' element={ <ProtectedRoute> <PatientAppointments /> </ProtectedRoute>} />
+              <Route path='/pharmacy' element={ <ProtectedRoute> <Pharmacy /> </ProtectedRoute>} />
 
             </Routes>
           </main>

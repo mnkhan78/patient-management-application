@@ -63,6 +63,10 @@ const Dashboard = () => {
             <h1>Dashboard</h1>
             <div className="dashboard-actions">
 
+                <Link to = '/pharmacy' >
+                    <button className="pharmacy-btn" type="submit">Medicine Queue</button>
+                </Link>
+
                 {/* new patient button: */}
                 <Link to='/newPatient' >
                     <button className="new-patient-btn" type="submit">New Patient</button>

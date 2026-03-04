@@ -10,6 +10,8 @@ const cookieParser = require('cookie-parser');
 const patientRoutes = require('./routes/patient.routes')
 const appointmentRoutes = require('./routes/appointment.routes')
 const userRoutes = require('./routes/user.routes');
+const pharmacyRoutes = require('./routes/pharmacy.routes');
+
 const { jwtAuthMiddleware, authorizeRoles } = require('./authetication/jwt.auth');
 
 const app = express();
@@ -17,7 +19,7 @@ const app = express();
 // app.use(cors())
 app.use(cors({
   origin: process.env.CLIENT_URL, // frontend URL
-  credentials: true,               // 🔥 allow cookies
+  credentials: true,               // allow cookies
 }));
 app.use(passport.initialize());
 app.use(bodyParser.json());
@@ -39,6 +41,7 @@ app.get("/", jwtAuthMiddleware, authorizeRoles('doctor'), (req, res) => {
 app.use('/patients', patientRoutes);
 app.use('/appointments', appointmentRoutes);
 app.use('/users', userRoutes);
+app.use('/pharmacy', pharmacyRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

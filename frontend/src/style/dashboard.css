@@ -34,6 +34,21 @@
   transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
+.pharmacy-btn {
+  background-color: #10b981; /* emerald-500 */
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+.pharmacy-btn:hover {
+  background-color: #059669; /* emerald-600 */
+  transform: translateY(-1px);
+}
+
 .new-patient-btn:hover {
   background-color: #1d4ed8; /* blue-700 */
   transform: translateY(-1px);
