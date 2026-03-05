@@ -6,9 +6,10 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [loading, setLoading] = useState(true);
     // const navigate = useNavigate();
 
-    // ✅ Check auth on app load (important for refresh)
+    // Check auth on app load (important for refresh)
     useEffect(() => {
         const checkAuth = async () => {
             try {
@@ -16,13 +17,15 @@ export const AuthProvider = ({ children }) => {
                 setIsAuthenticated(true);
             } catch (error) {
                 setIsAuthenticated(false);
+            } finally {
+                setLoading(false); //stop loading after authenticated
             }
         };
 
         checkAuth();
     }, []);
 
-    // ✅ Logout function
+    // Logout function
     const logout = async () => {
         try {
             await api.post("/users/logout");
@@ -39,6 +42,7 @@ export const AuthProvider = ({ children }) => {
                 isAuthenticated,
                 setIsAuthenticated,
                 logout,
+                loading,
             }}
         >
             {children}
@@ -46,5 +50,4 @@ export const AuthProvider = ({ children }) => {
     );
 };
 
-// Custom hook
 export const useAuth = () => useContext(AuthContext);
