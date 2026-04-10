@@ -11,6 +11,7 @@ const patientRoutes = require('./routes/patient.routes')
 const appointmentRoutes = require('./routes/appointment.routes')
 const userRoutes = require('./routes/user.routes');
 const pharmacyRoutes = require('./routes/pharmacy.routes');
+const analyticsRoutes = require('./routes/analytics.routes');
 
 const { jwtAuthMiddleware, authorizeRoles } = require('./authetication/jwt.auth');
 
@@ -42,6 +43,7 @@ app.use('/patients', patientRoutes);
 app.use('/appointments', appointmentRoutes);
 app.use('/users', userRoutes);
 app.use('/pharmacy', pharmacyRoutes);
+app.use('/analytics', analyticsRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

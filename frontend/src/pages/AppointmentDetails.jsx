@@ -27,7 +27,7 @@ const AppointmentDetails = () => {
             <h1 className="details-title">Appointment Details Page:</h1>
             {appointment && (
                 <div className="details-card">
-                    <p><strong>Patient ID:</strong> {appointment.patientId}</p>
+                    <p><strong>Patient Name:</strong> {appointment.patientId?.fullName}</p>
                     <p><strong>Date:</strong> {appointment.appointmentDate}</p>
                     <p><strong>Reason:</strong> {appointment.reason}</p>
                     <p><strong>Weight:</strong> {appointment.vitals.weight}</p>

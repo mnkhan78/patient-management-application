@@ -53,7 +53,8 @@ const Dashboard = () => {
 
         return (
             patient.fullName.toLowerCase().includes(query) ||
-            patient.phone.includes(query)
+            patient.phone.includes(query) || 
+            patient.patientId.toLowerCase().includes(query)
         )
     })
 

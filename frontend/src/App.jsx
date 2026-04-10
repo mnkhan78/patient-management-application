@@ -13,6 +13,7 @@ import Forbidden from './pages/Forbidden';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import PatientAppointments from './pages/PatientAppointments';
 import Pharmacy from './pages/Pharmacy';
+import Analytics from './pages/Analytics';
 
 function App() {
 
@@ -48,6 +49,7 @@ function App() {
               <Route path='/forbidden' element={<Forbidden />} />
               <Route path='/patients/:id/appointments' element={ <ProtectedRoute> <PatientAppointments /> </ProtectedRoute>} />
               <Route path='/pharmacy' element={ <ProtectedRoute> <Pharmacy /> </ProtectedRoute>} />
+              <Route path='/analytics' element={ <ProtectedRoute> <Analytics /> </ProtectedRoute>} />
 
             </Routes>
           </main>

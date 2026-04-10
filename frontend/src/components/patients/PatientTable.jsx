@@ -21,18 +21,19 @@ const PatientTable = ({ patients, onDelete, fetchPatients }) => {
             <table className="patient-table">
                 <thead>
                     <tr>
+                        <th>Patient ID</th>
                         <th>Name</th>
                         <th>Phone</th>
-                        <th>Age</th>
                         <th>Gender</th>
                     </tr>
                 </thead>
                 <tbody>
                     {patients.map((patient) => (
                         <tr>
+
+                            <th>{patient.patientId}</th>
                             <th>{patient.fullName}</th>
                             <th>{patient.phone}</th>
-                            <th>{patient.age}</th>
                             <th>{patient.gender}</th>
                             <th><Link to={`/patientDetails/${patient._id}`}>
                                 <button className="view-btn" type="button"> View Details
