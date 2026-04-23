@@ -86,6 +86,8 @@ const NewPatient = () => {
                         placeholder="Phone"
                         value={formData.phone}
                         onChange={handleChange}
+                        pattern="[0-9]{10}"
+                        title="Please enter a 10-digit phone number"
                         required
                     />
 

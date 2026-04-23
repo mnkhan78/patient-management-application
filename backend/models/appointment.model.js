@@ -46,6 +46,13 @@ const appointmentSchema = new mongoose.Schema(
             pulse: {
                 type: Number, // bpm
             },
+            temperature: {
+                type: Number, // °F
+            },
+            bmi: {
+                type: Number, // BMI
+            }
+
         },
 
         medicinesPrescribed: [
@@ -78,7 +85,10 @@ const appointmentSchema = new mongoose.Schema(
             type: String,
             trim: true,
         },
-
+        pharmacyNotes: {
+            type: String,
+            trim: true,
+        },
         isActive: {
             type: Boolean,
             default: true,

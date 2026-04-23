@@ -4,14 +4,6 @@ import '../style/updateModal.css'
 
 const UpdateAppointmentModal = ({ appointment, onClose }) => {
 
-  // const [formData, setFormData] = useState(appointment);
-
-  // useEffect(() => {
-  //   if (appointment) {
-  //     setFormData(appointment);
-  //   }
-  // }, [appointment]);
-
   const [formData, setFormData] = useState(() => appointment);
 
   // ---------- handlers ----------
@@ -126,10 +118,10 @@ const UpdateAppointmentModal = ({ appointment, onClose }) => {
           <h4>Doctor Notes</h4>
 
           <textarea
-            name="notes"
-            value={formData.notes}
+            name="pharmacyNotes"
+            value={formData.pharmacyNotes}
             onChange={handleChange}
-            placeholder="Doctor notes"
+            placeholder="Pharmacy notes"
           />
 
           <div className="modal-actions">

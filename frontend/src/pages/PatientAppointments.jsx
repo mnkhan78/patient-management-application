@@ -36,6 +36,7 @@ const PatientAppointments = () => {
                             <p><strong>Blood Pressure:</strong> {appointment.vitals.bp.systolic}/{appointment.vitals.bp.diastolic}</p>
                     <p><strong>Sugar:</strong> {appointment.vitals.sugar}</p>
                     <p><strong>Pulse:</strong> {appointment.vitals.pulse}</p>
+                    <p><strong>Temperature:</strong> {appointment.vitals.temperature}</p>
                     <div>
                         <strong>Medicines Prescribed:</strong>
                         <ul className="medicines-list"> 

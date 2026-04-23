@@ -43,7 +43,10 @@
 .details-card p:nth-child(4),
 .details-card p:nth-child(5),
 .details-card p:nth-child(6),
-.details-card p:nth-child(7) {
+.details-card p:nth-child(7),
+.details-card p:nth-child(8),
+.details-card p:nth-child(9),
+.details-card p:nth-child(10) {
   background: #f0f4ff;
   padding: 8px 12px;
   border-radius: 8px;

@@ -21,6 +21,9 @@ const NewAppointment = () => {
       },
       sugar: "",
       pulse: "",
+      temperature: "",
+      height: "",
+      bmi: "",
     },
     medicinesPrescribed: [
       {
@@ -104,6 +107,17 @@ const NewAppointment = () => {
       ...formData,
       medicinesPrescribed: updatedMedicines,
     });
+  };
+
+  const calculateBMI = () => {
+    const weight = parseFloat(formData.vitals.weight);
+    const heightCm = parseFloat(formData.vitals.height);
+    const heightM = heightCm / 100;
+
+    if (weight > 0 && heightM > 0) {
+      return (weight / (heightM * heightM)).toFixed(2);
+    }
+    return "N/A";
   };
 
   const handleSubmit = async (e) => {
@@ -213,6 +227,21 @@ const NewAppointment = () => {
               name="pulse"
               placeholder="Pulse (bpm)"
               value={formData.vitals.pulse}
+              onChange={handleVitalsChange}
+            />
+
+            <input
+              type="number"
+              name="temperature"
+              placeholder="Temperature (°F)"
+              value={formData.vitals.temperature}
+              onChange={handleVitalsChange}
+            />
+            <input
+              type="number"
+              name="bmi"
+              placeholder="BMI"
+              value={calculateBMI()}
               onChange={handleVitalsChange}
             />
           </div>

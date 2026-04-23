@@ -20,6 +20,27 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.get("/today", async (req, res) => {
+  try {
+    const start = new Date();
+    start.setHours(0, 0, 0, 0);
+
+    const end = new Date();
+    end.setHours(23, 59, 59, 999);
+
+    const appointments = await Appointment.find({
+      appointmentDate: { $gte: start, $lte: end }
+    })
+    .populate("patientId", "fullName age gender") // important
+    .sort({ time: 1 });
+
+    res.json(appointments);
+  } catch (err) {
+    console.error("ERROR:", err);
+    res.status(500).json({ message: err.message });
+  }
+});
+
 // GET appointments for a particular patient
 router.get('/patient/:patientId', async (req, res) => {
     try {

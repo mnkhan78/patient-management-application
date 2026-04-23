@@ -62,7 +62,7 @@ const Pharmacy = () => {
                 </li>
               ))}
             </ul>
-
+              <p>{appointment.pharmacyNotes}</p>
             <div className="status-section">
               <span
                 className={

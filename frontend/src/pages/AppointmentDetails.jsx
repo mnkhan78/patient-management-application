@@ -4,9 +4,15 @@ import api from '../api/axios';
 import { useEffect } from 'react';
 import '../style/appointmentDetails.css';
 
+import UpdateAppointmentModal from './UpdateAppointmnetModal';
+
 const AppointmentDetails = () => {
     const { id } = useParams();
     const [appointment, setAppointment] = useState(null);
+
+    const [showUpdateModal, setShowUpdateModal] = useState(false);
+    const [selectedAppointment, setSelectedAppointment] = useState(null);
+
     const navigate = useNavigate();
 
     const fetchAppointmentDetails = async () => {
@@ -31,10 +37,12 @@ const AppointmentDetails = () => {
                     <p><strong>Date:</strong> {appointment.appointmentDate}</p>
                     <p><strong>Reason:</strong> {appointment.reason}</p>
                     <p><strong>Weight:</strong> {appointment.vitals.weight}</p>
-                    {/* <p><strong>Height:</strong> {appointment.vitals.height}</p> */}
+                    <p><strong>Height:</strong> {appointment.vitals.height}</p>
                     <p><strong>Blood Pressure:</strong> {appointment.vitals.bp.systolic}/{appointment.vitals.bp.diastolic}</p>
                     <p><strong>Sugar:</strong> {appointment.vitals.sugar}</p>
                     <p><strong>Pulse:</strong> {appointment.vitals.pulse}</p>
+                    <p><strong>Temperature:</strong> {appointment.vitals.temperature}</p>
+                    <p><strong>BMI:</strong> {appointment.vitals.bmi}</p>
                     <div>
                         <strong>Medicines Prescribed:</strong>
                         <ul className="details-medicine-list"> 
@@ -44,9 +52,24 @@ const AppointmentDetails = () => {
                         </ul>
                     </div>
                     <p><strong>Notes:</strong> {appointment.notes}</p>
+
+                    {/* //doctor's notes input field */}
+                    <textarea name="" id="">Doctor's notes </textarea>
                 </div>
             )}
-            <button className="back-btn" onClick={() => navigate(-1)}>Go Back</button>
+            <button className="update-btn" onClick={() => setShowUpdateModal(true)}>
+                Add Medicine
+            </button>
+            <button className="back-btn" onClick={() => navigate(-1)}>
+                Go Back
+            </button>
+
+            {showUpdateModal && (
+                <UpdateAppointmentModal
+                    appointment={appointment}
+                    onClose={() => setShowUpdateModal(false)}
+                />
+            )}
         </div>
     );
 }
