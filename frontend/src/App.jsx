@@ -51,7 +51,7 @@ function App() {
               <Route path='/patients/:id/appointments' element={ <ProtectedRoute> <PatientAppointments /> </ProtectedRoute>} />
               <Route path='/pharmacy' element={ <ProtectedRoute> <Pharmacy /> </ProtectedRoute>} />
               <Route path='/analytics' element={ <ProtectedRoute> <Analytics /> </ProtectedRoute>} />
-              <Route path='/appointments/today' element = { <TodayAppointments /> } />
+              <Route path='/appointments/today' element = { <ProtectedRoute> <TodayAppointments /> </ProtectedRoute> } />
 
             </Routes>
           </main>

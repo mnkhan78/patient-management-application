@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import api from "../api/axios";
 import { useNavigate, useParams } from "react-router";
 import '../style/newAppointment.css'
@@ -6,6 +6,23 @@ import '../style/newAppointment.css'
 const NewAppointment = () => {
   const navigate = useNavigate();
   const { patientId } = useParams();
+
+  const [isHeightEditable, setIsHeightEditable] = useState(true);
+  const [height, setHeight] = useState("");
+  const [patient, setPatient] = useState(null);
+
+  useEffect(() => {
+    const fetchPatient = async () => {
+      try {
+        const res = await api.get(`/patients/${patientId}`);
+        setPatient(res.data);
+      } catch (error) {
+        console.error("Error fetching patient data:", error);
+      }
+    };
+
+    fetchPatient();
+  }, [patientId]);
 
   const [formData, setFormData] = useState({
     patientId: patientId,       //auto-attached
@@ -120,6 +137,24 @@ const NewAppointment = () => {
     return "N/A";
   };
 
+  useEffect(() => {
+    const weight = parseFloat(formData.vitals.weight);
+    const heightCm = parseFloat(formData.vitals.height);
+    const heightM = heightCm / 100;
+
+    if (weight > 0 && heightM > 0) {
+      const bmi = (weight / (heightM * heightM)).toFixed(2);
+
+      setFormData(prev => ({
+        ...prev,
+        vitals: {
+          ...prev.vitals,
+          bmi: bmi
+        }
+      }));
+    }
+  }, [formData.vitals.weight, formData.vitals.height]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -132,6 +167,54 @@ const NewAppointment = () => {
       alert("Failed to schedule an appointment ❌");
     }
   };
+  // to fetch the existing height for the patient (if any) and pre-fill it in the form. 
+  // This is especially useful for pediatric patients where height is a crucial metric. 
+  // For adults, you might choose to disable editing of height if you want to maintain historical accuracy, but that's optional based on your application's needs.
+  useEffect(() => {
+    const fetchLastHeight = async () => {
+      try {
+        // ✅ If patient is child → DON'T even fetch
+        if (patient && patient.age < 18) {
+          setIsHeightEditable(true);
+
+          // ❗ IMPORTANT: clear old height
+          setHeight("");
+          setFormData(prev => ({
+            ...prev,
+            vitals: {
+              ...prev.vitals,
+              height: ""
+            }
+          }));
+
+          return; // ⛔ stop here
+        }
+
+        // ✅ Only for adults
+        const res = await api.get(`/appointments/last-height/${patientId}`);
+        const lastHeight = res.data.height;
+
+        if (lastHeight) {
+          setFormData(prev => ({
+            ...prev,
+            vitals: {
+              ...prev.vitals,
+              height: lastHeight,
+            },
+          }));
+          setHeight(lastHeight);
+          setIsHeightEditable(false);
+        } else {
+          setIsHeightEditable(true); // first visit adult
+        }
+
+      } catch (error) {
+        console.error("Error fetching last height:", error);
+      }
+    };
+
+    fetchLastHeight();
+  }, [patientId, patient]);
 
   return (
     <div className="appointment-container">
@@ -196,6 +279,7 @@ const NewAppointment = () => {
               placeholder="Height (cm)"
               value={formData.vitals.height}
               onChange={handleVitalsChange}
+              disabled={!isHeightEditable}
             />
 
             <input
@@ -237,12 +321,20 @@ const NewAppointment = () => {
               value={formData.vitals.temperature}
               onChange={handleVitalsChange}
             />
-            <input
+            {/* <input
               type="number"
               name="bmi"
               placeholder="BMI"
               value={calculateBMI()}
               onChange={handleVitalsChange}
+            /> */}
+
+            <input
+              type="number"
+              name="bmi"
+              placeholder="BMI"
+              value={formData.vitals.bmi || ""}
+              readOnly
             />
           </div>
         </div>

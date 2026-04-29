@@ -8,9 +8,36 @@ router.use(jwtAuthMiddleware);
  
 router.get('/', async (req, res) => {
   try {
-    const data = await Patient.find();
+    const page = parseInt(req.query.page) || 1; // Default to page 1 if not provided
+    const limit = parseInt(req.query.limit) || 10; // Default to 10 items per page if not provided
+    
+    const search = req.query.search || ''; // Optional search query
+
+    const skip = (page - 1) * limit;
+
+    const query = search
+  ? {
+      $or: [
+        { fullName: { $regex: search, $options: "i" } },
+        { phone: { $regex: search, $options: "i" } },
+        { patientId: { $regex: search, $options: "i" } }
+      ]
+    }
+  : {};
+
+    const totalPatients = await Patient.countDocuments();
+    
+    const data = await Patient.find(query).skip(skip).limit(limit).sort({ createdAt: -1 }); // Sort by creation date (newest first)  
+
     console.log('data fetched successfully');
-    res.status(200).json(data);
+
+    res.status(200).json({
+      currentPage: page,
+      totalPages: Math.ceil(totalPatients / limit),
+      limit,
+      totalPatients,
+      data
+    });
 
   } catch (error) {
     console.log(error);

@@ -1,6 +1,7 @@
 const express = require('express');
 const Appointment = require('../models/appointment.model');
 const { jwtAuthMiddleware } = require('../authetication/jwt.auth');
+const Patient = require('../models/patient.model');
 
 const router = express.Router();
 
@@ -57,6 +58,29 @@ router.get('/patient/:patientId', async (req, res) => {
     }
 });
 
+router.get('/last-height/:patientId', async (req, res) => {
+  try {
+    const { patientId } = req.params;
+
+    const lastAppointment = await Appointment.findOne({
+      patientId,
+      "vitals.height": { $ne: null }
+    }).sort({ createdAt: -1 });
+
+    if (!lastAppointment) {
+      return res.json({ height: null });
+    }
+
+    res.json({
+      height: lastAppointment.vitals.height
+    });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 router.get('/:id', async (req, res) => {
     try {
         const { id } = req.params; 
@@ -75,6 +99,39 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     try {
         const data = req.body;
+
+        const patient = await Patient.findById(data.patientId);
+
+        if (!patient) {
+            return res.status(404).json({ error: 'Patient not found' });
+        }
+        const age = patient.age;
+        const inputHeight = data.vitals?.height;
+
+        //ensure vitrals object exists
+        if (!data.vitals) {
+            data.vitals = {};
+        }
+
+        if (age >= 18) {
+
+            const lastAppointment = await Appointment.findOne({ 
+                patientId: data.patientId,
+                "vitals.height": { $exists: true }
+            }).sort({createdAt: -1});
+
+            if (lastAppointment) {
+                data.vitals.height = lastAppointment.vitals.height;
+            } else {
+                if (!inputHeight) {
+                    return res.status(400).json({ error: 'Height is required for adult patients' });
+                }
+            } } else {
+                //below 18 years, height is mandatory
+                if (!inputHeight) {
+                    return res.status(400).json({ error: 'Height is required for patients under 18 years' });
+                }
+            }
         const newAppointment = new Appointment(data);
 
         const response = await newAppointment.save();

@@ -44,6 +44,17 @@
   cursor: pointer;
   transition: background-color 0.2s ease, transform 0.1s ease;
 }
+.today-appointments-btn {
+  background-color: #3b82f6; /* blue-500 */
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
 .pharmacy-btn:hover {
   background-color: #059669; /* emerald-600 */
   transform: translateY(-1px);
