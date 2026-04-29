@@ -5,7 +5,7 @@ import '../style/dashboard.css'
 
 import PatientSearch from "../components/patients/PatientSearch";
 import PatientTable from "../components/patients/PatientTable";
-import Navbar from "../components/home/Navbar";
+// import Navbar from "../components/home/Navbar";
 
 const Dashboard = () => {
     const [patients, setPatients] = useState([]);
