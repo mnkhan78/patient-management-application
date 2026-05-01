@@ -53,7 +53,7 @@ const Pharmacy = () => {
       <div className="card-container">
         {appointments.map((appointment) => (
           <div key={appointment._id} className="prescription-card">
-            <h3>{appointment.patientId.fullName}</h3>
+            <h3>{appointment.patientId?.fullName || "Unknown Patient"}</h3>
 
             <ul>
               {appointment.medicinesPrescribed.map((med, index) => (
@@ -62,7 +62,7 @@ const Pharmacy = () => {
                 </li>
               ))}
             </ul>
-              <p>{appointment.pharmacyNotes}</p>
+              <p>{appointment.pharmacyNotes || "No notes available"}</p>
             <div className="status-section">
               <span
                 className={

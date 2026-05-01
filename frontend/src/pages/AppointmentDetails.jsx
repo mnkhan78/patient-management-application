@@ -24,6 +24,21 @@ const AppointmentDetails = () => {
         }
     };
 
+    const handleNotesChange = (e) => {
+        setAppointment({ ...appointment, notes: e.target.value });
+    };
+
+    const handleNotesSave = async (e) => {
+        e.preventDefault();
+        try {
+            await api.patch(`/appointments/${id}`, { notes: appointment.notes });
+            alert("Notes saved successfully!");
+        } catch (error) {
+            console.error("Error saving notes:", error);
+            alert("Failed to save notes. Please try again.");
+        }
+    };
+
     useEffect(() => {
         fetchAppointmentDetails();
     }, [id]);
@@ -54,7 +69,19 @@ const AppointmentDetails = () => {
                     <p><strong>Notes:</strong> {appointment.notes}</p>
 
                     {/* //doctor's notes input field */}
-                    <textarea name="" id="">Doctor's notes </textarea>
+                    <div>
+                        <label htmlFor="doctorNotes"><strong>Doctor's Notes:</strong></label>
+                        <textarea
+                            id="doctorNotes"
+                            value={appointment.notes || ''}
+                            onChange={handleNotesChange}
+                            className="doctor-notes-textarea"
+                        />
+                        <button className="save-notes-btn" onClick={handleNotesSave}>
+                            Save Notes
+                        </button>
+                    </div>
+                    
                 </div>
             )}
             <button className="update-btn" onClick={() => setShowUpdateModal(true)}>

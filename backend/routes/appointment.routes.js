@@ -10,45 +10,45 @@ router.use(jwtAuthMiddleware);
 router.get('/', async (req, res) => {
     try {
         const data = await Appointment.find()
-        .populate('patientId', 'fullName');
+            .populate('patientId', 'fullName');
         res.status(200).json(data);
         console.log('data fetched successfully');
-        
+
     } catch (error) {
-        res.status(500).json({error: 'internal server error'})
+        res.status(500).json({ error: 'internal server error' })
         console.log(error);
-        
+
     }
 });
 
 router.get("/today", async (req, res) => {
-  try {
-    const start = new Date();
-    start.setHours(0, 0, 0, 0);
+    try {
+        const start = new Date();
+        start.setHours(0, 0, 0, 0);
 
-    const end = new Date();
-    end.setHours(23, 59, 59, 999);
+        const end = new Date();
+        end.setHours(23, 59, 59, 999);
 
-    const appointments = await Appointment.find({
-      appointmentDate: { $gte: start, $lte: end }
-    })
-    .populate("patientId", "fullName age gender") // important
-    .sort({ time: 1 });
+        const appointments = await Appointment.find({
+            appointmentDate: { $gte: start, $lte: end }
+        })
+            .populate("patientId", "fullName age gender") // important
+            .sort({ time: 1 });
 
-    res.json(appointments);
-  } catch (err) {
-    console.error("ERROR:", err);
-    res.status(500).json({ message: err.message });
-  }
+        res.json(appointments);
+    } catch (err) {
+        console.error("ERROR:", err);
+        res.status(500).json({ message: err.message });
+    }
 });
 
-// GET appointments for a particular patient
+// GET all the appointments for a particular patient
 router.get('/patient/:patientId', async (req, res) => {
     try {
         const { patientId } = req.params;
 
         const data = await Appointment.find({ patientId })
-        .populate('patientId', 'fullName');
+            .populate('patientId', 'fullName');
 
         res.status(200).json(data);
         console.log('Patient appointments fetched successfully');
@@ -59,34 +59,45 @@ router.get('/patient/:patientId', async (req, res) => {
 });
 
 router.get('/last-height/:patientId', async (req, res) => {
-  try {
-    const { patientId } = req.params;
+    try {
+        const { patientId } = req.params;
 
-    const lastAppointment = await Appointment.findOne({
-      patientId,
-      "vitals.height": { $ne: null }
-    }).sort({ createdAt: -1 });
+        const lastAppointment = await Appointment.findOne({
+            patientId,
+            "vitals.height": { $ne: null }
+        }).sort({ createdAt: -1 });
 
-    if (!lastAppointment) {
-      return res.json({ height: null });
+        if (!lastAppointment) {
+            return res.json({ height: null });
+        }
+
+        res.json({
+            height: lastAppointment.vitals.height
+        });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal server error" });
     }
-
-    res.json({
-      height: lastAppointment.vitals.height
-    });
-
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal server error" });
-  }
 });
 
 router.get('/:id', async (req, res) => {
     try {
-        const { id } = req.params; 
+        const { id } = req.params;
 
         const data = await Appointment.findById(id)
-        .populate('patientId', 'fullName');
+            .populate({
+                path: 'patientId',
+                select: 'fullName',
+                match: { isDeleted: false }
+            });
+
+        if (!data.patientId) {
+            return res.status(200).json({
+                ...data.toObject(),
+                patientName: "Deleted Patient"
+            });
+        }
 
         res.status(200).json(data);
         console.log('Appointment for the patient fetched successfully');
@@ -114,24 +125,15 @@ router.post('/', async (req, res) => {
         }
 
         if (age >= 18) {
-
-            const lastAppointment = await Appointment.findOne({ 
+            const lastAppointment = await Appointment.findOne({
                 patientId: data.patientId,
                 "vitals.height": { $exists: true }
-            }).sort({createdAt: -1});
+            }).sort({ createdAt: -1 });
 
             if (lastAppointment) {
                 data.vitals.height = lastAppointment.vitals.height;
-            } else {
-                if (!inputHeight) {
-                    return res.status(400).json({ error: 'Height is required for adult patients' });
-                }
-            } } else {
-                //below 18 years, height is mandatory
-                if (!inputHeight) {
-                    return res.status(400).json({ error: 'Height is required for patients under 18 years' });
-                }
             }
+        }
         const newAppointment = new Appointment(data);
 
         const response = await newAppointment.save();
@@ -139,7 +141,7 @@ router.post('/', async (req, res) => {
         res.status(200).json(response);
 
     } catch (error) {
-        res.status(500).json({error: 'internal server error'})
+        res.status(500).json({ error: 'internal server error' })
         console.log(error);
     }
 })

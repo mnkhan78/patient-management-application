@@ -134,3 +134,64 @@
     transform: translateY(0);
   }
 }
+
+/* doctor notes textare  */
+
+.doctor-notes-textarea {
+  width: 100%;
+  min-height: 150px;          /* Bigger default height */
+  padding: 12px 14px;
+  font-size: 16px;            /* Larger readable text */
+  line-height: 1.6;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  resize: vertical;           /* Allow only vertical resize */
+  outline: none;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+/* Focus state */
+.doctor-notes-textarea:focus {
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+/* Save button styling */
+.save-notes-btn {
+  margin-top: 10px;
+  padding: 10px 16px;
+  font-size: 15px;
+  font-weight: 500;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.save-notes-btn:hover {
+  background-color: #43a047;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .doctor-notes-textarea {
+    min-height: 120px;
+    font-size: 15px;
+  }
+
+  .save-notes-btn {
+    width: 100%; /* Full width button on mobile */
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .doctor-notes-textarea {
+    min-height: 100px;
+    font-size: 14px;
+    padding: 10px;
+  }
+}
