@@ -78,7 +78,7 @@ const AppointmentDetails = () => {
                             className="doctor-notes-textarea"
                         />
                         <button className="save-notes-btn" onClick={handleNotesSave}>
-                            Save Note
+                            Save Notes
                         </button>
                     </div>
                     
