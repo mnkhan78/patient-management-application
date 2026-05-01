@@ -68,7 +68,7 @@ const Dashboard = () => {
 
     return (
         <div className="dashboard-container">
-            <h3>Welcome, Dr. E.S. Khan</h3>
+            <h3>Welcome, Dr. Khan</h3>
             <h1>Dashboard</h1>
             <div className="dashboard-actions">
 
