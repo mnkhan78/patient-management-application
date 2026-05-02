@@ -39,6 +39,13 @@ const patientSchema = new mongoose.Schema(
       type: String,
     },
 
+    // address: {
+    //   address: String,
+    //   lat: Number,
+    //   lng: Number,
+    //   placeId: String
+    // },
+
     bloodGroup: {
       type: String,
       enum: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-', ''],
@@ -52,6 +59,14 @@ const patientSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
+    isDeleted: {
+      type: Boolean,
+      default: false
+    },
+    deletedAt: {
+      type: Date,
+      default: null
+    }
   },
   {
     timestamps: true,

@@ -89,18 +89,22 @@ router.get('/:id', async (req, res) => {
             .populate({
                 path: 'patientId',
                 select: 'fullName',
-                match: { isDeleted: false }
+                // match: { isDeleted: false }
             });
 
-        if (!data.patientId) {
-            return res.status(200).json({
-                ...data.toObject(),
-                patientName: "Deleted Patient"
-            });
+        if (!data) {
+            return res.status(404).json({ message: "Appointment not found" });
         }
 
-        res.status(200).json(data);
-        console.log('Appointment for the patient fetched successfully');
+        const response = data.toObject();
+
+        response.patientName = data.patientId
+            ? data.patientId.fullName
+            : "Deleted Patient";
+
+        res.status(200).json(response);
+
+        console.log('Appointment fetched successfully');
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal server error' });
