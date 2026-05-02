@@ -124,7 +124,7 @@ router.post('/', async (req, res) => {
             data.vitals = {};
         }
 
-        if (age >= 18) {
+        if (age >= 20) {
             const lastAppointment = await Appointment.findOne({
                 patientId: data.patientId,
                 "vitals.height": { $exists: true }

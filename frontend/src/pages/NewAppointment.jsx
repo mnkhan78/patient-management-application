@@ -41,6 +41,7 @@ const NewAppointment = () => {
       temperature: "",
       height: "",
       bmi: "",
+      o2Sat: "",
     },
     medicinesPrescribed: [
       {
@@ -174,7 +175,7 @@ const NewAppointment = () => {
     const fetchLastHeight = async () => {
       try {
         // ✅ If patient is child → DON'T even fetch
-        if (patient && patient.age < 18) {
+        if (patient && patient.age < 20) {
           setIsHeightEditable(true);
 
           // ❗ IMPORTANT: clear old height
@@ -328,7 +329,13 @@ const NewAppointment = () => {
               value={calculateBMI()}
               onChange={handleVitalsChange}
             /> */}
-
+            <input
+              type="number"
+              name="o2Sat"
+              placeholder="O2 Saturation (%)"
+              value={formData.vitals.o2Sat}
+              onChange={handleVitalsChange}
+            />
             <input
               type="number"
               name="bmi"

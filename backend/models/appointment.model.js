@@ -51,7 +51,10 @@ const appointmentSchema = new mongoose.Schema(
             },
             bmi: {
                 type: Number, // BMI
-            }
+            },
+            o2Sat: {
+                type: Number, // %
+            },
 
         },
 

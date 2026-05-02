@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import '../style/appointmentDetails.css';
 
 import UpdateAppointmentModal from './UpdateAppointmnetModal';
+import IdealWeight from "../components/patients/IdealWeight";
 
 const AppointmentDetails = () => {
     const { id } = useParams();
@@ -58,8 +59,10 @@ const AppointmentDetails = () => {
                     <p><strong>Pulse:</strong> {appointment.vitals.pulse}</p>
                     <p><strong>Temperature:</strong> {appointment.vitals.temperature}</p>
                     <p><strong>BMI:</strong> {appointment.vitals.bmi}</p>
+                    <p><strong>O2 Saturation:</strong> {appointment.vitals.o2Sat}%</p>
+                    <IdealWeight height={appointment.vitals.height} bmi={appointment.vitals.bmi} />
                     <div>
-                        <strong>Medicines Prescribed:</strong>
+                        <strong>Prescribed Medicines:</strong>
                         <ul className="details-medicine-list"> 
                             {appointment.medicinesPrescribed.map((medicine, index) => (
                                 <li key={index}>{medicine.name} - {medicine.dosage} - {medicine.frequency}</li>
