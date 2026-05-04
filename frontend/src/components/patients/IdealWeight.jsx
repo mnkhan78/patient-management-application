@@ -1,5 +1,3 @@
-
-
 const IdealWeight = ({ height, bmi }) => {
     const calculateIdealWeightRange = () => {
         const heightCm = parseFloat(height);

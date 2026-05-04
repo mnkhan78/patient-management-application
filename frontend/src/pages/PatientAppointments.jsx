@@ -37,6 +37,7 @@ const PatientAppointments = () => {
                     <p><strong>Sugar:</strong> {appointment.vitals.sugar}</p>
                     <p><strong>Pulse:</strong> {appointment.vitals.pulse}</p>
                     <p><strong>Temperature:</strong> {appointment.vitals.temperature}</p>
+                    <p><strong>BMI:</strong> {appointment.vitals.bmi}</p>
                     <div>
                         <strong>Medicines Prescribed:</strong>
                         <ul className="medicines-list"> 

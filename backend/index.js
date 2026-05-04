@@ -12,6 +12,7 @@ const appointmentRoutes = require('./routes/appointment.routes')
 const userRoutes = require('./routes/user.routes');
 const pharmacyRoutes = require('./routes/pharmacy.routes');
 const analyticsRoutes = require('./routes/analytics.routes');
+const bmiRoutes = require('./routes/bmi.routes');
 
 const { jwtAuthMiddleware, authorizeRoles } = require('./authetication/jwt.auth');
 
@@ -39,6 +40,7 @@ app.get("/", jwtAuthMiddleware, authorizeRoles('doctor'), (req, res) => {
   res.send("Backend is running 🚀");
 });
 
+app.use('/bmi', bmiRoutes);
 app.use('/patients', patientRoutes);
 app.use('/appointments', appointmentRoutes);
 app.use('/users', userRoutes);

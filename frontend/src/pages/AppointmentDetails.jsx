@@ -6,6 +6,7 @@ import '../style/appointmentDetails.css';
 
 import UpdateAppointmentModal from './UpdateAppointmnetModal';
 import IdealWeight from "../components/patients/IdealWeight";
+import ChildBMIResult from '../components/patients/ChildBMIResult';
 
 const AppointmentDetails = () => {
     const { id } = useParams();
@@ -53,7 +54,7 @@ const AppointmentDetails = () => {
     useEffect(() => {
         fetchAppointmentDetails();
     }, [id]);
-
+    // console.log("appointment details:", appointment);
     return (
         <div className="appointment-details-container">
             <h1 className="details-title">Appointment Details Page:</h1>
@@ -70,7 +71,20 @@ const AppointmentDetails = () => {
                     <p><strong>Temperature:</strong> {appointment.vitals.temperature}</p>
                     <p><strong>BMI:</strong> {appointment.vitals.bmi}</p>
                     <p><strong>O2 Saturation:</strong> {appointment.vitals.o2Sat}%</p>
-                    <IdealWeight height={appointment.vitals.height} bmi={appointment.vitals.bmi} />
+                    {appointment.patientId?.age < 19 ? (
+                        <ChildBMIResult
+                            zScore={appointment.vitals.zScore}
+                            status={appointment.vitals.status}
+                            ageInMonths={appointment.vitals.ageInMonths}
+                        />
+                    ) : (
+                        <IdealWeight
+                            height={appointment.vitals.height}
+                            bmi={appointment.vitals.bmi}
+                        />
+                    )}
+
+
                     <div>
                         <strong>Prescribed Medicines:</strong>
                         <ul className="details-medicine-list">

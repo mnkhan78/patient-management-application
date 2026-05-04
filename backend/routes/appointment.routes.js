@@ -10,7 +10,7 @@ router.use(jwtAuthMiddleware);
 router.get('/', async (req, res) => {
     try {
         const data = await Appointment.find()
-            .populate('patientId', 'fullName');
+            .populate('patientId', 'fullName age gender');
         res.status(200).json(data);
         console.log('data fetched successfully');
 
@@ -48,7 +48,7 @@ router.get('/patient/:patientId', async (req, res) => {
         const { patientId } = req.params;
 
         const data = await Appointment.find({ patientId })
-            .populate('patientId', 'fullName');
+            .populate('patientId', 'fullName age gender');
 
         res.status(200).json(data);
         console.log('Patient appointments fetched successfully');
@@ -88,7 +88,7 @@ router.get('/:id', async (req, res) => {
         const data = await Appointment.findById(id)
             .populate({
                 path: 'patientId',
-                select: 'fullName',
+                select: 'fullName age gender',
                 // match: { isDeleted: false }
             });
 

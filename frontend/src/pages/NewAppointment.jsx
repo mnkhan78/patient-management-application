@@ -11,6 +11,8 @@ const NewAppointment = () => {
   const [height, setHeight] = useState("");
   const [patient, setPatient] = useState(null);
 
+  const [childBMIData, setChildBMIData] = useState(null);
+
   useEffect(() => {
     const fetchPatient = async () => {
       try {
@@ -42,6 +44,9 @@ const NewAppointment = () => {
       height: "",
       bmi: "",
       o2Sat: "",
+      zScore: "",
+      status: "",
+      ageInMonths: "",
     },
     medicinesPrescribed: [
       {
@@ -138,13 +143,16 @@ const NewAppointment = () => {
     return "N/A";
   };
 
+  //handling bmi calculation for adults
   useEffect(() => {
+    if (!patient || patient.age < 19) return;
+
     const weight = parseFloat(formData.vitals.weight);
     const heightCm = parseFloat(formData.vitals.height);
     const heightM = heightCm / 100;
 
     if (weight > 0 && heightM > 0) {
-      const bmi = (weight / (heightM * heightM)).toFixed(2);
+      const bmi = parseFloat((weight / (heightM * heightM)).toFixed(2));
 
       setFormData(prev => ({
         ...prev,
@@ -155,6 +163,48 @@ const NewAppointment = () => {
       }));
     }
   }, [formData.vitals.weight, formData.vitals.height]);
+
+  //handling bmi for children
+  useEffect(() => {
+  const fetchChildBMI = async () => {
+    try {
+      if (
+        !patient ||
+        patient.age >= 19 ||
+        !formData.vitals.weight ||
+        !formData.vitals.height
+      ) return;
+
+      const payload = {
+        weight: parseFloat(formData.vitals.weight),
+        height: parseFloat(formData.vitals.height),
+        age: patient.age,
+        gender: patient.gender.toLowerCase()
+      };
+
+      const res = await api.post('/bmi/child-bmi', payload);
+
+      setChildBMIData(res.data);
+
+      // ✅ store in formData (VERY IMPORTANT)
+      setFormData(prev => ({
+        ...prev,
+        vitals: {
+          ...prev.vitals,
+          bmi: res.data.bmi,
+          zScore: res.data.zScore,
+          status: res.data.status,
+          ageInMonths: res.data.ageInMonths
+        }
+      }));
+
+    } catch (error) {
+      console.error("Child BMI error:", error);
+    }
+  };
+
+  fetchChildBMI();
+}, [formData.vitals.weight, formData.vitals.height, patient?.age, patient?.gender]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

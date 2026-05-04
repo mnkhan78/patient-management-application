@@ -55,6 +55,15 @@ const appointmentSchema = new mongoose.Schema(
             o2Sat: {
                 type: Number, // %
             },
+            zScore: {
+                type: Number, // Z-Score
+            },
+            status: {
+                type: String, // BMI status
+            },
+            ageInMonths: {
+                type: Number, // Age in months for children
+            },
 
         },
 
