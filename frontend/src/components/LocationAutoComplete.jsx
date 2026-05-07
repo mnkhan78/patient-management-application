@@ -5,7 +5,7 @@ const libraries = ["places"];
 
 function LocationInput({ setLocation }) {
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyCcIFNnMGutVgfZHMqHAbVoO7uL2VassE4",
+    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
     libraries,
   });
 
