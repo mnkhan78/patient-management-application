@@ -1,6 +1,7 @@
 const express = require('express');
 const Patient = require('../models/patient.model');
 const { jwtAuthMiddleware, authorizeRoles } = require('../authetication/jwt.auth');
+const sendSMS = require('../utils/sendSMS');
 
 const router = express.Router();
 
@@ -50,6 +51,12 @@ router.post('/', async (req, res) => {
     const data = req.body
     const newPatient = new Patient(data);
     const response = await newPatient.save()
+
+    const patienrPhone = response.phone;
+    const message = `Dear ${response.fullName}, your patient ID is ${response.patientId}. Please keep it safe for future reference.`;
+    const formattedPhone = `+91${patienrPhone}`; // Assuming the phone number is in the format "1234567890"
+    await sendSMS(formattedPhone, message);
+
     console.log('data saved successfully');
     res.status(200).json(response)
 

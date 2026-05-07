@@ -2,6 +2,7 @@ import { useState } from "react";
 import api from '../api/axios'
 import { useNavigate } from "react-router";
 import '../style/newPatient.css'
+import LocationInput from "../components/LocationAutoComplete";
 
 const NewPatient = () => {
     const navigate = useNavigate();
@@ -114,12 +115,19 @@ const NewPatient = () => {
                         <option value="O-">O-</option>
                     </select>
 
-                    <input
+                    {/* <input
                         className="full-width"
                         name="address"
-                        placeholder="Address"
+                        placeholder="Address" 
                         value={formData.address}
                         onChange={handleChange}
+                    /> */}
+
+                    <LocationInput
+                        value={formData.address}
+                        onChange={(location) =>
+                            setFormData({ ...formData, address: location })
+                        }
                     />
 
                     <textarea

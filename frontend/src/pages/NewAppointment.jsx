@@ -374,18 +374,11 @@ const NewAppointment = () => {
               value={formData.vitals.temperature}
               onChange={handleVitalsChange}
             />
-            {/* <input
-              type="number"
-              name="bmi"
-              placeholder="BMI"
-              value={calculateBMI()}
-              onChange={handleVitalsChange}
-            /> */}
             <input
               type="number"
               name="o2Sat"
               placeholder="O2 Saturation (%)"
-              value={formData.vitals.o2Sat}
+              value={formData.vitals.o2Sat || ""}
               onChange={handleVitalsChange}
             />
             <input
