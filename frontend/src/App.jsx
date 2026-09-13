@@ -15,17 +15,22 @@ import PatientAppointments from './pages/PatientAppointments';
 import Pharmacy from './pages/Pharmacy';
 import Analytics from './pages/Analytics';
 import TodayAppointments from './pages/TodayAppointment';
+import Frontal from './pages/Frontal';
 
 function App() {
 
   return (
     <>
       <div>
-        {/* <h1>Hi there!</h1> */}
         <Router>
           <main>
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/frontal" element={
+                <ProtectedRoute>
+                  <Frontal />
+                </ProtectedRoute>} 
+              />
 
               <Route path='/dashboard' element={
                 <ProtectedRoute>

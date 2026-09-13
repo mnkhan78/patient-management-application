@@ -12,7 +12,7 @@ const Home = () => {
                 <h1 className="home-title">Welcome to Patient Management System</h1>
                 <p className="home-subtitle">Manage your patients efficiently and securely</p>
                 <div className="home-buttons">
-                    <Link to='/dashboard'>
+                    <Link to='/frontal'>
                         <button className="home-primary-btn">Dashboard</button>
                     </Link>
 

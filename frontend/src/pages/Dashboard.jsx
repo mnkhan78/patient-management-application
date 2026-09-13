@@ -1,11 +1,19 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import api from '../api/axios'
-import '../style/dashboard.css'
+// import '../style/dashboard.css'
+import '../style/patients.css'
 
 import PatientSearch from "../components/patients/PatientSearch";
 import PatientTable from "../components/patients/PatientTable";
-// import Navbar from "../components/home/Navbar";
+import {
+    FiActivity,
+    FiUsers,
+    FiChevronLeft,
+    FiChevronRight
+} from "react-icons/fi";
+
+import { FaUserPlus } from "react-icons/fa";
 
 const Dashboard = () => {
     const [patients, setPatients] = useState([]);
@@ -67,60 +75,83 @@ const Dashboard = () => {
     })
 
     return (
-        <div className="dashboard-container">
-            <h3>Welcome, Dr. E.S Khan</h3>
-            <h1>Dashboard</h1>
-            <div className="dashboard-actions">
+        <div className="patients-page">
+            <div className="patients-header">
 
-                <Link to='/pharmacy' >
-                    <button className="pharmacy-btn" type="submit">Medicine Queue</button>
-                </Link>
+                <div className="patients-title-section">
+                    <h1>Patients</h1>
+                    <p>Manage and view your registered patients</p>
+                </div>
 
-                <Link to='/appointments/today'>
-                    <button className="today-appointments-btn" type="submit">Today's Appointments</button>
-                </Link>
+                <div className="patients-header-actions">
+                    {/* <Link to="/pharmacy">
+                        <button className="pharmacy-btn" type="button">
+                            <FiActivity />
+                            <span>Medicine Queue</span>
+                        </button>
+                    </Link> */}
 
-                {/* new patient button: */}
-                <Link to='/newPatient' >
-                    <button className="new-patient-btn" type="submit">New Patient</button>
-                </Link>
-
-
-                {/* searching for patients:  */}
-                {/* <PatientSearch
-                    searchQuery={searchQuery}
-                    setSearchQuery={setSearchQuery}
-                /> */}
-                <PatientSearch
-                    searchQuery={search}
-                    setSearchQuery={setSearch}
-                    setPage={setPage}
-                />
+                    <PatientSearch
+                        searchQuery={search}
+                        setSearchQuery={setSearch}
+                        setPage={setPage}
+                    />
+                    <Link to="/newPatient">
+                        {/* <button className="add-patient-btn" type="button">
+                            <span>+ Add Patient</span>
+                        </button> */}
+                        <FaUserPlus />
+                        {/* <span>Register Patient</span> */}
+                    </Link>
+                </div>
             </div>
 
-            <div style={{ marginTop: "20px" }}>
-                <button
-                    disabled={page === 1}
-                    onClick={() => setPage((prev) => prev - 1)}
-                >
-                    Prev
-                </button>
+            <div className="patients-content">
 
-                <span style={{ margin: "0 10px" }}>
-                    Page {page} of {totalPages}
-                </span>
+                {/* <div className="patients-summary">
+                    <div className="summary-icon">
+                        <FiUsers />
+                    </div>
 
-                <button
-                    disabled={page === totalPages}
-                    onClick={() => setPage((prev) => prev + 1)}
-                >
-                    Next
-                </button>
-            </div>
+                    <div>
+                        <span>Total Patients</span>
+                        <strong>{filteredPatients.length}</strong>
+                    </div>
+                </div> */}
 
-            {/* showing patients table:  */}
-            <div className="patient-table-wrapper">
-                <PatientTable patients={filteredPatients} onDelete={handleDeletePatient} fetchPatients={fetchPatients} />
+                <div className="patient-table-wrapper">
+                    <PatientTable
+                        patients={filteredPatients}
+                        onDelete={handleDeletePatient}
+                        fetchPatients={fetchPatients}
+                    />
+                </div>
+
+                <div className="patients-pagination">
+
+                    <button
+                        className="pagination-btn"
+                        disabled={page === 1}
+                        onClick={() => setPage((prev) => prev - 1)}
+                    >
+                        <FiChevronLeft />
+                        <span>Prev</span>
+                    </button>
+
+                    <span className="pagination-info">
+                        Page <strong>{page}</strong> of <strong>{totalPages}</strong>
+                    </span>
+
+                    <button
+                        className="pagination-btn"
+                        disabled={page === totalPages}
+                        onClick={() => setPage((prev) => prev + 1)}
+                    >
+                        <span>Next</span>
+                        <FiChevronRight />
+                    </button>
+
+                </div>
             </div>
         </div>
     )

@@ -1,0 +1,32 @@
+/* ===========================
+   APP LAYOUT
+=========================== */
+
+.app-layout {
+    display: flex;
+    min-height: 100vh;
+    background: #f8fafc;
+}
+
+/* ===========================
+   MAIN CONTENT
+=========================== */
+
+.app-main {
+    width: 100%;
+    padding: 20px;
+    padding-bottom: 90px;
+}
+
+/* ===========================
+   DESKTOP
+=========================== */
+
+@media (min-width: 1024px) {
+
+    .app-main {
+        margin-left: 260px;
+        width: calc(100% - 260px);
+        padding: 40px;
+    }
+}
