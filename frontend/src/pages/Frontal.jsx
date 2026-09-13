@@ -56,7 +56,7 @@ const Frontal = () => {
 
             const completed = appointments.filter(
                 (appointment) =>
-                    appointment.status === "completed"
+                    appointment.status === "Completed"
             ).length;
 
             const pending = appointments.filter(
