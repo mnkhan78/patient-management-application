@@ -17,7 +17,7 @@ const Sidebar = ({ user }) => {
             <div className="sidebar-top">
 
                 <div className="sidebar-logo">
-                    <h2>Slotify</h2>
+                    <h2>PMA</h2>
                 </div>
 
                 <div className="sidebar-user">

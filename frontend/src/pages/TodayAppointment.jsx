@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api/axios";
+import "../style/patientAppointments.css";
 
 const TodayAppointments = () => {
   const [appointments, setAppointments] = useState([]);
@@ -33,7 +34,7 @@ const TodayAppointments = () => {
         appointments.map((appt) => (
           <div
             key={appt._id}
-            className="appointment-card"
+            className={`appointment-card status-${appt.status?.toLowerCase()}`}
             onClick={() => handleClick(appt.patientId._id)}
           >
             <p className="patient-name">

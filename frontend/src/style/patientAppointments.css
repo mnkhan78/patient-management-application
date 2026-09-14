@@ -27,7 +27,19 @@
   padding: 20px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  border-left: 6px solid #4CAF50;
+  border-left: 6px solid #3498db;
+}
+
+.appointment-card.status-scheduled {
+  border-left-color: #3498db;
+}
+
+.appointment-card.status-completed {
+  border-left-color: #2ecc71;
+}
+
+.appointment-card.status-cancelled {
+  border-left-color: #e74c3c;
 }
 
 .appointment-card:hover {
@@ -45,8 +57,7 @@
   color: #2c3e50;
 }
 
-/* Status Styling */
-.appointment-card p:nth-child(3) {
+.appointment-card p:nth-child(2) {
   font-weight: bold;
 }
 

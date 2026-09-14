@@ -39,39 +39,6 @@
 }
 
 /* ====================================
-   APPOINTMENT CARD
-==================================== */
-
-.appointment-card {
-    background: #ffffff;
-    border-radius: 16px;
-    padding: 20px;
-    margin-bottom: 16px;
-    box-shadow:
-        0 2px 8px rgba(0,0,0,0.05);
-    border: 1px solid #eef2f7;
-
-    transition: all 0.3s ease;
-}
-
-.appointment-card:hover {
-    transform: translateY(-3px);
-    box-shadow:
-        0 8px 20px rgba(0,0,0,0.08);
-}
-
-.appointment-card h4 {
-    margin-bottom: 14px;
-    color: #111827;
-    font-size: 1.1rem;
-}
-
-.appointment-card p {
-    margin-bottom: 8px;
-    color: #4b5563;
-}
-
-/* ====================================
    STATUS BADGES
 ==================================== */
 
