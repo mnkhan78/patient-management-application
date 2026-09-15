@@ -1,10 +1,19 @@
 import React, { useEffect, useState } from "react";
 import api from "../api/axios";
 import '../style/pharmacy.css';
+import Layout from "../components/Layout";
 
 const Pharmacy = () => {
   const [appointments, setAppointments] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
 
   const fetchMedicineQueue = async () => {
     try {
@@ -47,46 +56,48 @@ const Pharmacy = () => {
   if (loading) return <p>Loading pharmacy queue...</p>;
 
   return (
-    <div className="pharmacy-container">
-      <h2>Today's Medicine Queue</h2>
+    <Layout user={user}>
+      <div className="pharmacy-container">
+        <h2>Today's Medicine Queue</h2>
 
-      <div className="card-container">
-        {appointments.map((appointment) => (
-          <div key={appointment._id} className="prescription-card">
-            <h3>{appointment.patientId?.fullName || "Unknown Patient"}</h3>
+        <div className="card-container">
+          {appointments.map((appointment) => (
+            <div key={appointment._id} className="prescription-card">
+              <h3>{appointment.patientId?.fullName || "Unknown Patient"}</h3>
 
-            <ul>
-              {appointment.medicinesPrescribed.map((med, index) => (
-                <li key={index}>
-                  {med.name} - {med.dosage} ({med.frequency})
-                </li>
-              ))}
-            </ul>
+              <ul>
+                {appointment.medicinesPrescribed.map((med, index) => (
+                  <li key={index}>
+                    {med.name} - {med.dosage} ({med.frequency})
+                  </li>
+                ))}
+              </ul>
               <p>{appointment.pharmacyNotes || "No notes available"}</p>
-            <div className="status-section">
-              <span
-                className={
-                  appointment.medicineStatus === "Pending"
-                    ? "status pending"
-                    : "status dispensed"
-                }
-              >
-                {appointment.medicineStatus}
-              </span>
-
-              {appointment.medicineStatus === "Pending" && (
-                <button
-                  className="dispense-btn"
-                  onClick={() => markAsDispensed(appointment._id)}
+              <div className="status-section">
+                <span
+                  className={
+                    appointment.medicineStatus === "Pending"
+                      ? "status pending"
+                      : "status dispensed"
+                  }
                 >
-                  Mark as Dispensed
-                </button>
-              )}
+                  {appointment.medicineStatus}
+                </span>
+
+                {appointment.medicineStatus === "Pending" && (
+                  <button
+                    className="dispense-btn"
+                    onClick={() => markAsDispensed(appointment._id)}
+                  >
+                    Mark as Dispensed
+                  </button>
+                )}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 

@@ -25,12 +25,6 @@
   margin-bottom: 20px;
 }
 
-.medicine-row {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
 .modal-actions {
   display: flex;
   justify-content: flex-end;
@@ -47,4 +41,90 @@
     opacity: 1;
     transform: scale(1);
   }
+}
+
+/* .medicine-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  touch-action: manipulation;
+}
+
+.medicine-drag-handle {
+  flex: 0 0 auto;
+  width: 32px;
+  height: 40px;
+
+  border: none;
+  background: transparent;
+
+  font-size: 20px;
+  color: #777;
+
+  cursor: grab;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  touch-action: none;
+}
+
+.medicine-drag-handle:hover {
+  color: #333;
+}
+
+.medicine-drag-handle:active {
+  cursor: grabbing;
+} */
+
+.medicine-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  touch-action: manipulation;
+  width: 100%;
+}
+
+.medicine-drag-handle {
+  flex: 0 0 auto;
+  width: 24px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  color: #777;
+  cursor: grab;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  touch-action: none;
+}
+
+.medicine-drag-handle:hover {
+  color: #333;
+}
+
+.medicine-drag-handle:active {
+  cursor: grabbing;
+}
+
+/* Add these targeted input styles */
+.medicine-row input {
+  flex: 1;
+  min-width: 0; /* Prevents input overflow in flex containers */
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+/* Optional proportional column widths */
+.medicine-row input[name="name"] {
+  flex: 2; /* Gives more room to the Medicine Name input */
 }
