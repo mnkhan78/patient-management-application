@@ -17,6 +17,7 @@ import Analytics from './pages/Analytics';
 import TodayAppointments from './pages/TodayAppointment';
 import Frontal from './pages/Frontal';
 
+import ClinicQueue from './components/public/ClinicQueue';
 function App() {
 
   return (
@@ -26,6 +27,7 @@ function App() {
           <main>
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/clinic-queue" element={<ClinicQueue />} />
               <Route path="/frontal" element={
                 <ProtectedRoute>
                   <Frontal />

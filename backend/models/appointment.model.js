@@ -29,6 +29,19 @@ const appointmentSchema = new mongoose.Schema(
             default: 'Scheduled',
         },
 
+        queueStatus: {
+            type: String,
+            enum: [
+                'Waiting',
+                'Called',
+                'In Consultation',
+                'Completed',
+                'Skipped',
+                'No Show'
+            ],
+            default: 'Waiting',
+        },
+
         doctorName: {
             type: String,
             trim: true,
@@ -100,7 +113,7 @@ const appointmentSchema = new mongoose.Schema(
         dispensedAt: {
             type: Date,
         },
-        
+
         chiefComplaints: {
             type: String,
             default: ""

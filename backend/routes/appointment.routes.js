@@ -179,6 +179,7 @@ router.patch('/:id', async (req, res) => {
         ) {
             updateData.medicinePrescribedAt = new Date();
             updateData.status = "Completed";
+            updateData.queueStatus = "Completed";
         }
 
         const updatedAppointment = await Appointment.findByIdAndUpdate(id, updateData, { new: true });
